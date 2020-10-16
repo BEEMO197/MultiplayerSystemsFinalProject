@@ -7,6 +7,7 @@ public class PlayerCube : MonoBehaviour
     
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
+    public Character characterRef;
     public Vector3 Velocity;
 
     // Start is called before the first frame update
@@ -29,6 +30,8 @@ public class PlayerCube : MonoBehaviour
             Velocity.x = Input.GetAxis("Horizontal");
             Velocity.z = Input.GetAxis("Vertical");
 
+            Debug.Log(Velocity);
+                
             transform.position += Velocity;
 
             //transform.position = new Vector3(netWorkManRef.lastestNewPlayer.newPlayer.color.R * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.G * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.B * 5);
