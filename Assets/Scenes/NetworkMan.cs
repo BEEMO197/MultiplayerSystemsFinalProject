@@ -70,7 +70,7 @@ public class NetworkMan : MonoBehaviour
     [Serializable]
     public class NewPlayer{
         public Player newPlayer;
-        public Player[] Players;
+        public Player[] players;
     }
 
     [Serializable]
@@ -168,13 +168,13 @@ public class NetworkMan : MonoBehaviour
             PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
 
-            if (lastestNewPlayer.Players != null)
+            if (lastestNewPlayer.players != null)
             {
-                foreach (Player player in lastestNewPlayer.Players)
+                foreach (Player player in lastestNewPlayer.players)
                 {
                     PlayerList.Add(player);
                     PlayerList.Last().cube = Instantiate(cubeRef);
-                    PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
+                    PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(player.color.R, player.color.G, player.color.B));
                 }
             }
             newPlayerSpawned = false;
@@ -191,7 +191,7 @@ public class NetworkMan : MonoBehaviour
                 {
                     PlayerList[k].color = lastestGameState.players[i].color;
                     PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
-                   //PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
+                    PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
                 }
             }
         }
@@ -200,7 +200,16 @@ public class NetworkMan : MonoBehaviour
 
     void DestroyPlayers()
     {
-
+        if(lastestLostPlayer.lostPlayer != null)
+        {
+            foreach(Player player in PlayerList)
+            {
+                if(player.Equals(lastestLostPlayer.lostPlayer))
+                {
+                    PlayerList.Remove(player);
+                }
+            }
+        }
     }
     void HeartBeat()
     {
