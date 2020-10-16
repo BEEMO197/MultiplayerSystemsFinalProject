@@ -159,15 +159,6 @@ public class NetworkMan : MonoBehaviour
         if (newPlayerSpawned)
         {
             // Debug.Log(lastestNewPlayer.newPlayer.id);
-
-            PlayerList.Add(lastestNewPlayer.newPlayer);
-            PlayerList.Last().cube = Instantiate(cubeRef);
-            PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
-
-            PlayerList.Last().cube.AddComponent<PlayerCube>();
-            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
-            playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
-
             if (lastestNewPlayer.players != null)
             {
                 foreach (Player player in lastestNewPlayer.players)
@@ -177,6 +168,16 @@ public class NetworkMan : MonoBehaviour
                     PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(player.color.R, player.color.G, player.color.B));
                 }
             }
+
+            PlayerList.Add(lastestNewPlayer.newPlayer);
+            PlayerList.Last().cube = Instantiate(cubeRef);
+            PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
+
+            PlayerList.Last().cube.AddComponent<PlayerCube>();
+            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
+            playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
+
+            
             newPlayerSpawned = false;
         }
     }
