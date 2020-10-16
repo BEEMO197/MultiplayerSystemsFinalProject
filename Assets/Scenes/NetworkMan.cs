@@ -191,11 +191,9 @@ public class NetworkMan : MonoBehaviour
                 {
                     PlayerList[k].color = lastestGameState.players[i].color;
                     PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
-<<<<<<< HEAD
+
                     PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
-=======
-                   PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
->>>>>>> b59ead9d9d5fb2541464cf0cd44b9922ab7b2364
+
                 }
             }
         }
