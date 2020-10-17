@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 707992417606157453}
   - component: {fileID: 7457388624414882040}
   - component: {fileID: 8454284475504207227}
+  - component: {fileID: 1828551641062361595}
   - component: {fileID: 8527015416254677825}
   m_Layer: 0
   m_Name: Cube
@@ -180,6 +181,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1828551641062361595
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077938894494970599}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &8527015416254677825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,5 +219,10 @@ MonoBehaviour:
     id: 
     cube: {fileID: 0}
   cubeCamera: {fileID: 6900875857140917454}
+<<<<<<< Updated upstream
+=======
+  rigidBody: {fileID: 1828551641062361595}
+  characterRef: {fileID: 0}
+>>>>>>> Stashed changes
   Velocity: {x: 0, y: 0, z: 0}
   bulletRef: {fileID: 8697237360588728740, guid: c0a35bcf88e828540b2c43646be579a4, type: 3}

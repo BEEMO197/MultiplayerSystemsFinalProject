@@ -185,13 +185,16 @@ public class NetworkMan : MonoBehaviour
     {
         for(int i = 0; i < lastestGameState.players.Length; i++)
         {
-            for (int k = 0; k < PlayerList.Count(); k++)
+            for (int k = i; k < PlayerList.Count(); k++)
             {
                 if (lastestGameState.players[i].id == PlayerList[k].id)
                 {
-                    PlayerList[k].color = lastestGameState.players[i].color;
+                    //PlayerList[k].color = lastestGameState.players[i].color;
                     PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
-                    PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
+                }
+                else
+                {
+                    PlayerList[k].cube.transform.position = lastestGameState.players[k].position;
                 }
             }
         }
