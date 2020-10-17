@@ -8,12 +8,16 @@ using System.Net;
 using System.Linq;
 using UnityEngine.UIElements;
 
+
 public class NetworkMan : MonoBehaviour
 {
     public UdpClient udp;
     // Start is called before the first frame update
     public GameState gameState;
     public GameObject cubeRef;
+
+    public string username;
+    public TextMeshProUGUI user;
 
     void Start()
     {
@@ -186,8 +190,6 @@ public class NetworkMan : MonoBehaviour
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
-
-
             newPlayerSpawned = false;
         }
     }
