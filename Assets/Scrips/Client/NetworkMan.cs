@@ -7,6 +7,9 @@ using System.Net.Sockets;
 using System.Net;
 using System.Linq;
 using UnityEngine.UIElements;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NetworkMan : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class NetworkMan : MonoBehaviour
     // Start is called before the first frame update
     public GameState gameState;
     public GameObject cubeRef;
+
+    public string username;
+    public TextMeshProUGUI user;
 
     void Start()
     {
@@ -175,8 +181,8 @@ public class NetworkMan : MonoBehaviour
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
-
-            
+            PlayerList.Last().id = username;
+            user.text = username;
             newPlayerSpawned = false;
         }
     }
