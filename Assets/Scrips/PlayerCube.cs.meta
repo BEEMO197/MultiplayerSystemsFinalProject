@@ -3,7 +3,10 @@ guid: 012231a96813f084dbdbb26aab7b0f0c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - netWorkManRef: {instanceID: 0}
+  - cubeCamera: {instanceID: 0}
+  - bulletRef: {fileID: 8697237360588728740, guid: c0a35bcf88e828540b2c43646be579a4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

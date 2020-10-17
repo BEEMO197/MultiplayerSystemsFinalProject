@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 7457388624414882040}
   - component: {fileID: 8454284475504207227}
   - component: {fileID: 8527015416254677825}
-  - component: {fileID: -1677763354369257267}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -203,17 +202,5 @@ MonoBehaviour:
     id: 
     cube: {fileID: 0}
   cubeCamera: {fileID: 6900875857140917454}
-  characterRef: {fileID: 0}
   Velocity: {x: 0, y: 0, z: 0}
---- !u!114 &-1677763354369257267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9077938894494970599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d663864e3f07a1b49bc33c634bdc843a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bulletRef: {fileID: 8697237360588728740, guid: c0a35bcf88e828540b2c43646be579a4, type: 3}

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCube : MonoBehaviour
+public class PlayerCube : Character
 {
     
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
     public Camera cubeCamera;
-    public Character characterRef;
     public Vector3 Velocity;
+    public GameObject bulletRef;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +28,18 @@ public class PlayerCube : MonoBehaviour
             Velocity.x = Input.GetAxis("Horizontal");
             Velocity.z = Input.GetAxis("Vertical");
 
-            Debug.Log(Velocity);
                 
             transform.position += Velocity;
+
+            if (Input.GetAxis("Fire1") > 0)
+            {
+                GameObject.Instantiate(bulletRef, transform.position, transform.rotation);
+            }
 
             //transform.position = new Vector3(netWorkManRef.lastestNewPlayer.newPlayer.color.R * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.G * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.B * 5);
         }
     }
 
-
 }
+
+
