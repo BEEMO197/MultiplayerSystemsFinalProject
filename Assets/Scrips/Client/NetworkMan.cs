@@ -205,6 +205,7 @@ public class NetworkMan : MonoBehaviour
                 }
                 else
                 {
+                    // Set Position of everyone else thats not the client
                     PlayerList[k].cube.transform.position = lastestGameState.players[k].position;
                 }
             }
