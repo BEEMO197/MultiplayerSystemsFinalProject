@@ -16,9 +16,6 @@ public class NetworkMan : MonoBehaviour
     public GameState gameState;
     public GameObject cubeRef;
 
-    public string username;
-    public TextMeshProUGUI user;
-
     void Start()
     {
         udp = new UdpClient();
