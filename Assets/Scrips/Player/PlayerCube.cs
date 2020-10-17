@@ -9,6 +9,7 @@ public class PlayerCube : Character
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
     public Camera cubeCamera;
+    public Canvas cubeCanvas;
 
     public GameObject bulletRef;
     public Rigidbody rigidBody;
@@ -21,6 +22,7 @@ public class PlayerCube : Character
         if(netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
             cubeCamera.enabled = true;
+            cubeCanvas.enabled = true;
         }
     }
 

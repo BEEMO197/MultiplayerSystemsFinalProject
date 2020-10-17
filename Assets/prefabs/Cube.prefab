@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3231251247930209599}
+  - component: {fileID: 8674844965409355590}
   - component: {fileID: -9050852751033478381}
   - component: {fileID: -1376917185583676210}
   - component: {fileID: 49692281687195586}
@@ -21,8 +21,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3231251247930209599
-Transform:
+--- !u!224 &8674844965409355590
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -38,6 +38,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &-9050852751033478381
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,6 +143,7 @@ MonoBehaviour:
     id: 
     cube: {fileID: 0}
   cubeCamera: {fileID: 7667257896905704196}
+  cubeCanvas: {fileID: 1803578063282329605}
   bulletRef: {fileID: 8697237360588728740, guid: c0a35bcf88e828540b2c43646be579a4, type: 3}
   rigidBody: {fileID: 4688296819494723058}
   speed: 5
@@ -172,7 +178,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 12, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3231251247930209599}
+  m_Father: {fileID: 8674844965409355590}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!20 &7667257896905704196
@@ -238,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df37d6eba36a01439959b59e7feda8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 3231251247930209599}
+  playerTransform: {fileID: 0}
   smoothSpeed: 0.125
   prevCameraLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &3087868477575069375
@@ -270,7 +276,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3231251247930209599}
+  m_Father: {fileID: 8674844965409355590}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5797889480459171956
@@ -340,7 +346,7 @@ RectTransform:
   - {fileID: 189194460760539225}
   - {fileID: 8528031441333962661}
   - {fileID: 7792852691275402928}
-  m_Father: {fileID: 3231251247930209599}
+  m_Father: {fileID: 8674844965409355590}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -355,7 +361,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8408293563411244578}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
