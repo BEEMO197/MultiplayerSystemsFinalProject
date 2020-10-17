@@ -16,9 +16,6 @@ public class NetworkMan : MonoBehaviour
     public GameState gameState;
     public GameObject cubeRef;
 
-    public string username;
-    public TextMeshProUGUI user;
-
     void Start()
     {
         udp = new UdpClient();
@@ -181,6 +178,7 @@ public class NetworkMan : MonoBehaviour
                     PlayerList.Add(player);
                     PlayerList.Last().cube = Instantiate(cubeRef);
                     PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(player.color.R, player.color.G, player.color.B));
+                    //PlayerList.Last().cube.transform.position = player.position;
                 }
             }
 
