@@ -29,7 +29,7 @@ public class NetworkMan : MonoBehaviour
         udp.Connect("52.203.158.53", 12345);
 
         Byte[] sendBytes = Encoding.ASCII.GetBytes("connect");
-      
+
         udp.Send(sendBytes, sendBytes.Length);
 
         udp.BeginReceive(new AsyncCallback(OnReceived), udp);
@@ -39,27 +39,32 @@ public class NetworkMan : MonoBehaviour
 
     }
 
-    void OnDestroy(){
+    void OnDestroy()
+    {
         udp.Dispose();
     }
 
 
-    public enum commands{
+    public enum commands
+    {
         NEW_CLIENT,
         UPDATE,
-        LOST_CLIENT, 
+        LOST_CLIENT,
         UNIQUE_CLIENT_ID
     };
-    
+
     [Serializable]
-    public class Message{
+    public class Message
+    {
         public commands cmd;
     }
-    
+
     [Serializable]
-    public class Player{
+    public class Player
+    {
         [Serializable]
-        public struct receivedColor{
+        public struct receivedColor
+        {
             public float R;
             public float G;
             public float B;
@@ -72,7 +77,8 @@ public class NetworkMan : MonoBehaviour
     }
 
     [Serializable]
-    public class NewPlayer{
+    public class NewPlayer
+    {
         public Player newPlayer;
         public Player[] players;
     }
@@ -84,7 +90,8 @@ public class NetworkMan : MonoBehaviour
     }
 
     [Serializable]
-    public class GameState{
+    public class GameState
+    {
         public Player[] players;
     }
 
@@ -111,23 +118,26 @@ public class NetworkMan : MonoBehaviour
 
     public bool newPlayerSpawned = false;
 
-    void OnReceived(IAsyncResult result){
+    void OnReceived(IAsyncResult result)
+    {
         // this is what had been passed into BeginReceive as the second parameter:
         UdpClient socket = result.AsyncState as UdpClient;
-        
+
         // points towards whoever had sent the message:
         IPEndPoint source = new IPEndPoint(0, 0);
 
         // get the actual message and fill out the source:
         byte[] message = socket.EndReceive(result, ref source);
-        
+
         // do what you'd like with `message` here:
         string returnData = Encoding.ASCII.GetString(message);
         Debug.Log("Got this: " + returnData);
-        
+
         latestMessage = JsonUtility.FromJson<Message>(returnData);
-        try{
-            switch(latestMessage.cmd){
+        try
+        {
+            switch (latestMessage.cmd)
+            {
                 case commands.NEW_CLIENT:
                     lastestNewPlayer = JsonUtility.FromJson<NewPlayer>(returnData);
                     newPlayerSpawned = true;
@@ -150,7 +160,8 @@ public class NetworkMan : MonoBehaviour
                     break;
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             Debug.Log(e.ToString());
         }
 
@@ -179,15 +190,13 @@ public class NetworkMan : MonoBehaviour
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
-            
-            
             newPlayerSpawned = false;
         }
     }
 
     void UpdatePlayers()
     {
-        for(int i = 0; i < lastestGameState.players.Length; i++)
+        for (int i = 0; i < lastestGameState.players.Length; i++)
         {
             for (int k = i; k < PlayerList.Count(); k++)
             {
@@ -207,11 +216,11 @@ public class NetworkMan : MonoBehaviour
 
     void DestroyPlayers()
     {
-        if(lastestLostPlayer.lostPlayer != null)
+        if (lastestLostPlayer.lostPlayer != null)
         {
-            foreach(Player player in PlayerList)
+            foreach (Player player in PlayerList)
             {
-                if(player.Equals(lastestLostPlayer.lostPlayer))
+                if (player.Equals(lastestLostPlayer.lostPlayer))
                 {
                     PlayerList.Remove(player);
                 }
