@@ -39,7 +39,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7479712085743599920}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -202,6 +202,8 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     id: 
     cube: {fileID: 0}
+  cubeCamera: {fileID: 6900875857140917454}
+  characterRef: {fileID: 0}
   Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &-1677763354369257267
 MonoBehaviour:

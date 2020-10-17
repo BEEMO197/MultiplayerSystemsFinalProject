@@ -171,10 +171,9 @@ public class NetworkMan : MonoBehaviour
 
             PlayerList.Add(lastestNewPlayer.newPlayer);
             PlayerList.Last().cube = Instantiate(cubeRef);
+            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
-            PlayerList.Last().cube.AddComponent<PlayerCube>();
-            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
 
             
@@ -192,9 +191,7 @@ public class NetworkMan : MonoBehaviour
                 {
                     PlayerList[k].color = lastestGameState.players[i].color;
                     PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
-
                     PlayerList[k].cube.transform.position = lastestGameState.players[i].position;
-
                 }
             }
         }

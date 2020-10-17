@@ -7,6 +7,7 @@ public class PlayerCube : MonoBehaviour
     
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
+    public Camera cubeCamera;
     public Character characterRef;
     public Vector3 Velocity;
 
@@ -15,10 +16,7 @@ public class PlayerCube : MonoBehaviour
     {
         if(netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
-            
-           // GetComponent<Renderer>().material.SetColor("_Color", new Color(netWorkManRef.lastestNewPlayer.newPlayer.color.R,
-           //                                                                 netWorkManRef.lastestNewPlayer.newPlayer.color.G, 
-           //                                                                 netWorkManRef.lastestNewPlayer.newPlayer.color.B));
+            cubeCamera.enabled = true;
         }
     }
 
