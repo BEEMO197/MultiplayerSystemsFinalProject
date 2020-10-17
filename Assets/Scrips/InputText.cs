@@ -1,27 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InputText : MonoBehaviour
 {
-    public InputField input;
-    public Text WarningText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string username;
+    public TMP_InputField userInputField;
+    public TextMeshProUGUI userWarning;
 
-    // Update is called once per frame
-    void Update()
+    public string password;
+    public TMP_InputField passInputField;
+    public TextMeshProUGUI passWarning;
+
+    public void setUsername()
     {
-        if (string.IsNullOrEmpty(input.text))
+        if (userInputField.text == "")
         {
-            WarningText.text = "Input is empty";
-            WarningText.gameObject.SetActive(true);
+            userWarning.text = "Input username";
         }
         else
-            WarningText.gameObject.SetActive(false);
+        {
+            Debug.Log("username found");
+            username = userInputField.text;
+        }
     }
+    public void setPassword()
+    {
+
+        if (passInputField.text == "")
+        {
+            passWarning.text = "Input password";
+        }
+        else
+        {
+            Debug.Log("password found");
+
+            password = passInputField.text;
+        }
+    }
+
+    public void sceneLoad()
+    {
+        if(password != "" && username != "")
+        {
+            SceneManager.LoadScene("Game");
+        }
+    }
+
 }
