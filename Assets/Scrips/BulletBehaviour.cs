@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
 
-    public Vector3 Velocity = new Vector3(0.0f, 0.0f, 0.2f);
+
 
 
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class BulletBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 Velocity = transform.forward;
         transform.position += Velocity;
         Destroy(gameObject, 0.3f);
     }
