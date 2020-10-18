@@ -9,14 +9,12 @@ public class PlayerCube : Character
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
     public Camera cubeCamera;
-<<<<<<< Updated upstream:Assets/Scrips/PlayerCube.cs
     public Vector3 Velocity;
+    public Canvas cubeCanvas;
     public GameObject bulletRef;
-=======
     public Rigidbody rigidBody;
     public float speed = 5.0f;
     public Character characterRef;
->>>>>>> Stashed changes:Assets/Scrips/Player/PlayerCube.cs
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +23,8 @@ public class PlayerCube : Character
         {
             cubeCamera.enabled = true;
         }
+
+        Vector3 spawnPosition = transform.position + transform.forward * 10;
     }
 
     // Update is called once per frame
@@ -32,22 +32,26 @@ public class PlayerCube : Character
     {
         if (netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
-<<<<<<< Updated upstream:Assets/Scrips/PlayerCube.cs
             Velocity.x = Input.GetAxis("Horizontal");
             Velocity.z = Input.GetAxis("Vertical");
 
-=======
+
             //Velocity.x = Input.GetAxis("Horizontal");
             //Velocity.z = Input.GetAxis("Vertical");
             rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             rigidBody.velocity *= speed;
->>>>>>> Stashed changes:Assets/Scrips/Player/PlayerCube.cs
                 
+
             //transform.position += Velocity;
+
+            Vector3 spawnPosition = transform.position + transform.forward * 10;
 
             if (Input.GetAxis("Fire1") > 0)
             {
-                GameObject.Instantiate(bulletRef, transform.position, transform.rotation);
+                if (Time.frameCount % 40 == 0)
+                {
+                    GameObject.Instantiate(bulletRef, spawnPosition, transform.rotation);
+                }
             }
 
             //transform.position = new Vector3(netWorkManRef.lastestNewPlayer.newPlayer.color.R * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.G * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.B * 5);
