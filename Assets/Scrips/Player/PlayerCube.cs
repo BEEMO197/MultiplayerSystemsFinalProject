@@ -13,7 +13,7 @@ public class PlayerCube : Character
 
     public GameObject bulletRef;
     public Rigidbody rigidBody;
-    public float speed = 5.0f;
+    public float speed = 20.0f;
     public Character characterRef;
 
     // Start is called before the first frame update
@@ -33,9 +33,21 @@ public class PlayerCube : Character
         {
             //Velocity.x = Input.GetAxis("Horizontal");
             //Velocity.z = Input.GetAxis("Vertical");
-            rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            rigidBody.velocity *= speed;
-                
+
+            transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
+
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                rigidBody.velocity = (transform.right * Input.GetAxis("Horizontal")) * speed;
+            }
+
+            if(Input.GetAxis("Vertical") != 0)
+            {
+                rigidBody.velocity = (transform.forward * Input.GetAxis("Vertical")) * speed;
+            }
+
+            //rigidBody.velocity *= speed;
+            //Vector3.ClampMagnitude(rigidBody.velocity, speed);
             //transform.position += Velocity;
 
             if (Input.GetAxis("Fire1") > 0)
