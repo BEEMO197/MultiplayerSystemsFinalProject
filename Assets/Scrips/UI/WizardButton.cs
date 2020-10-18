@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class LoginButtonBehaviour : MonoBehaviour
+public class WizardButton : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -19,6 +18,6 @@ public class LoginButtonBehaviour : MonoBehaviour
 
     public void OnButtonPress()
     {
-        //SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game");
     }
 }
