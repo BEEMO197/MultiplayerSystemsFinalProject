@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PaladinButton : MonoBehaviour
+public class HeavyButton : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
