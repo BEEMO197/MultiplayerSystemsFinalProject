@@ -9,8 +9,13 @@ public class PlayerCube : Character
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
     public Camera cubeCamera;
+
     public Vector3 Velocity;
     public Canvas cubeCanvas;
+
+    public Canvas cubeCanvas;
+
+
     public GameObject bulletRef;
     public Rigidbody rigidBody;
     public float speed = 5.0f;
@@ -22,6 +27,7 @@ public class PlayerCube : Character
         if(netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
             cubeCamera.enabled = true;
+            cubeCanvas.enabled = true;
         }
 
         Vector3 spawnPosition = transform.position + transform.forward * 10;
@@ -32,8 +38,10 @@ public class PlayerCube : Character
     {
         if (netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
+
             Velocity.x = Input.GetAxis("Horizontal");
             Velocity.z = Input.GetAxis("Vertical");
+
 
 
             //Velocity.x = Input.GetAxis("Horizontal");
