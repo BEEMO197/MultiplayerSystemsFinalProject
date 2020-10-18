@@ -40,7 +40,10 @@ public class PlayerCube : Character
 
             if (Input.GetAxis("Fire1") > 0)
             {
-                GameObject.Instantiate(bulletRef, transform.position, transform.rotation);
+                if (Time.frameCount % 40 == 0)
+                {
+                    GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                }
             }
 
             //transform.position = new Vector3(netWorkManRef.lastestNewPlayer.newPlayer.color.R * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.G * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.B * 5);

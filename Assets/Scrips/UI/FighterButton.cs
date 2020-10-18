@@ -1,13 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BulletBehaviour : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class FighterButton : MonoBehaviour
 {
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +13,10 @@ public class BulletBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 Velocity = transform.forward;
-        transform.position += Velocity;
-        Destroy(gameObject, 0.3f);
+        
+    }
+    public void OnButtonPress()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
