@@ -185,7 +185,7 @@ public class NetworkMan : MonoBehaviour
 
             PlayerList.Add(lastestNewPlayer.newPlayer);
             PlayerList.Last().cube = Instantiate(cubeRef);
-            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
+            PlayerList.Last().cube.GetComponent<Character>().networkManRef = this;
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -202,7 +202,7 @@ public class NetworkMan : MonoBehaviour
         //        if (lastestGameState.players[i].id == PlayerList[k].id)
         //        {
         //            //PlayerList[k].color = lastestGameState.players[i].color;
-        //            PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
+        //            PlayerList[k].cube.GetComponent<Character>().playerRef = lastestGameState.players[i];
         //        }
         //        else
         //        {
@@ -213,7 +213,7 @@ public class NetworkMan : MonoBehaviour
         //}
 
         // Loop though players to find controlling Client
-        foreach(Player player in PlayerList)
+        foreach (Player player in PlayerList)
         {
             if(player.id == uniqueID.uniqueID)
             {
@@ -223,7 +223,7 @@ public class NetworkMan : MonoBehaviour
                     if(serverPlayer.id == player.id)
                     {
                         // set our player ref inside our controller
-                        player.cube.GetComponent<PlayerCube>().playerRef = serverPlayer;
+                        player.cube.GetComponent<Character>().playerRef = serverPlayer;
                     }
                 }
             }

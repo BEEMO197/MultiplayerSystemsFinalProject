@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
 
-public class PlayerCube : Character
+public class PlayerCube : MonoBehaviour
 {
     
     public NetworkMan netWorkManRef;
@@ -14,7 +14,6 @@ public class PlayerCube : Character
     public GameObject bulletRef;
     public Rigidbody rigidBody;
     public float speed = 20.0f;
-    public Character characterRef;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +52,7 @@ public class PlayerCube : Character
 
             velocityR = new Vector3(0.0f, 0.0f, 0.0f);
             velocityF = new Vector3(0.0f, 0.0f, 0.0f);
+
             //rigidBody.velocity *= speed;
             //Vector3.ClampMagnitude(rigidBody.velocity, speed);
             //transform.position += Velocity;
