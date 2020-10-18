@@ -9,14 +9,12 @@ public class PlayerCube : Character
     public NetworkMan netWorkManRef;
     public NetworkMan.Player playerRef;
     public Camera cubeCamera;
-<<<<<<< Updated upstream:Assets/Scrips/PlayerCube.cs
-    public Vector3 Velocity;
+    public Canvas cubeCanvas;
+
     public GameObject bulletRef;
-=======
     public Rigidbody rigidBody;
     public float speed = 5.0f;
     public Character characterRef;
->>>>>>> Stashed changes:Assets/Scrips/Player/PlayerCube.cs
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +22,7 @@ public class PlayerCube : Character
         if(netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
             cubeCamera.enabled = true;
+            cubeCanvas.enabled = true;
         }
     }
 
@@ -32,16 +31,10 @@ public class PlayerCube : Character
     {
         if (netWorkManRef.uniqueID.uniqueID == playerRef.id)
         {
-<<<<<<< Updated upstream:Assets/Scrips/PlayerCube.cs
-            Velocity.x = Input.GetAxis("Horizontal");
-            Velocity.z = Input.GetAxis("Vertical");
-
-=======
             //Velocity.x = Input.GetAxis("Horizontal");
             //Velocity.z = Input.GetAxis("Vertical");
             rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             rigidBody.velocity *= speed;
->>>>>>> Stashed changes:Assets/Scrips/Player/PlayerCube.cs
                 
             //transform.position += Velocity;
 
