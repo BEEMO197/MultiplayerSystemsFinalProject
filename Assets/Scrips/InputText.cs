@@ -46,7 +46,7 @@ public class InputText : MonoBehaviour
     {
         if(password != "" && username != "")
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Character Select");
         }
     }
 
