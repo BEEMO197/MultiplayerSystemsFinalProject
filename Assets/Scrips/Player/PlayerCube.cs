@@ -36,16 +36,23 @@ public class PlayerCube : Character
 
             transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
 
+            Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+            Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
+
             if (Input.GetAxis("Horizontal") != 0)
             {
-                rigidBody.velocity = (transform.right * Input.GetAxis("Horizontal")) * speed;
+                velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
             }
 
             if(Input.GetAxis("Vertical") != 0)
             {
-                rigidBody.velocity = (transform.forward * Input.GetAxis("Vertical")) * speed;
+                velocityF = (transform.forward * Input.GetAxis("Vertical")) * speed;
             }
 
+            rigidBody.velocity = velocityR + velocityF;
+
+            velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+            velocityF = new Vector3(0.0f, 0.0f, 0.0f);
             //rigidBody.velocity *= speed;
             //Vector3.ClampMagnitude(rigidBody.velocity, speed);
             //transform.position += Velocity;
