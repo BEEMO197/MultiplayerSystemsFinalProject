@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 337130104}
   - component: {fileID: 337130107}
   m_Layer: 5
-  m_Name: Rouge
+  m_Name: Rogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
