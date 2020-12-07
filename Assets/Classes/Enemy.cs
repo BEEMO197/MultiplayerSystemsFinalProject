@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private int health;
     private int damage;
+    private float scoreGiven;
 
 
     // Start is called before the first frame update
@@ -19,4 +20,16 @@ public class Enemy : MonoBehaviour
     {
         
     }
+
+
+    public float giveScore()
+    {
+        return scoreGiven;
+    }
+
+    public void setScore(float _score)
+    {
+        scoreGiven = _score;
+    }
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
 
-public class PlayerCube : Character
+public class PlayerCube : MonoBehaviour
 {
     
     public NetworkMan netWorkManRef;
@@ -13,8 +13,7 @@ public class PlayerCube : Character
 
     public GameObject bulletRef;
     public Rigidbody rigidBody;
-    public float speed = 5.0f;
-    public Character characterRef;
+    public float speed = 20.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +32,37 @@ public class PlayerCube : Character
         {
             //Velocity.x = Input.GetAxis("Horizontal");
             //Velocity.z = Input.GetAxis("Vertical");
-            rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            rigidBody.velocity *= speed;
-                
+
+            transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
+
+            Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+            Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
+
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
+            }
+
+            if(Input.GetAxis("Vertical") != 0)
+            {
+                velocityF = (transform.forward * Input.GetAxis("Vertical")) * speed;
+            }
+
+            rigidBody.velocity = velocityR + velocityF;
+
+            velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+            velocityF = new Vector3(0.0f, 0.0f, 0.0f);
+
+            //rigidBody.velocity *= speed;
+            //Vector3.ClampMagnitude(rigidBody.velocity, speed);
             //transform.position += Velocity;
 
             if (Input.GetAxis("Fire1") > 0)
             {
-                GameObject.Instantiate(bulletRef, transform.position, transform.rotation);
+                if (Time.frameCount % 40 == 0)
+                {
+                    GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                }
             }
 
             //transform.position = new Vector3(netWorkManRef.lastestNewPlayer.newPlayer.color.R * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.G * 5, netWorkManRef.lastestNewPlayer.newPlayer.color.B * 5);

@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Linq;
 using UnityEngine.UIElements;
-
+using System.Linq.Expressions;
 
 public class NetworkMan : MonoBehaviour
 {
@@ -97,13 +97,13 @@ public class NetworkMan : MonoBehaviour
         public string uniqueID;
     }
 
-    public playerUniqueID uniqueID;
-
     public struct PlayerData
     {
         public Vector3 playerLocation;
         public string heartbeat;
     }
+
+    public playerUniqueID uniqueID;
 
     public PlayerData playerData;
     public Message latestMessage;
@@ -177,6 +177,7 @@ public class NetworkMan : MonoBehaviour
                 {
                     PlayerList.Add(player);
                     PlayerList.Last().cube = Instantiate(cubeRef);
+                    PlayerList.Last().cube.transform.position = player.position;
                     PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(player.color.R, player.color.G, player.color.B));
                     //PlayerList.Last().cube.transform.position = player.position;
                 }
@@ -184,7 +185,7 @@ public class NetworkMan : MonoBehaviour
 
             PlayerList.Add(lastestNewPlayer.newPlayer);
             PlayerList.Last().cube = Instantiate(cubeRef);
-            PlayerList.Last().cube.GetComponent<PlayerCube>().netWorkManRef = this;
+            PlayerList.Last().cube.GetComponent<Character>().networkManRef = this;
             PlayerList.Last().cube.GetComponent<Renderer>().material.SetColor("_Color", new Color(lastestNewPlayer.newPlayer.color.R, lastestNewPlayer.newPlayer.color.G, lastestNewPlayer.newPlayer.color.B));
 
             playerData.playerLocation = new Vector3(0.0f, 0.0f, 0.0f);
@@ -194,21 +195,52 @@ public class NetworkMan : MonoBehaviour
 
     void UpdatePlayers()
     {
-        for (int i = 0; i < lastestGameState.players.Length; i++)
+        //for (int i = 0; i < lastestGameState.players.Length; i++)
+        //{
+        //    for (int k = i; k < PlayerList.Count(); k++)
+        //    {
+        //        if (lastestGameState.players[i].id == PlayerList[k].id)
+        //        {
+        //            //PlayerList[k].color = lastestGameState.players[i].color;
+        //            PlayerList[k].cube.GetComponent<Character>().playerRef = lastestGameState.players[i];
+        //        }
+        //        else
+        //        {
+        //            // Set Position of everyone else thats not the client
+        //            PlayerList[k].cube.transform.position = lastestGameState.players[k].position;
+        //        }
+        //    }
+        //}
+
+        // Loop though players to find controlling Client
+        foreach (Player player in PlayerList)
         {
-            for (int k = i; k < PlayerList.Count(); k++)
+            if(player.id == uniqueID.uniqueID)
             {
-                if (lastestGameState.players[i].id == PlayerList[k].id)
+                // Loop through the servers players to check for our player, and get the ref
+                foreach(Player serverPlayer in lastestGameState.players)
                 {
-                    //PlayerList[k].color = lastestGameState.players[i].color;
-                    PlayerList[k].cube.GetComponent<PlayerCube>().playerRef = lastestGameState.players[i];
+                    if(serverPlayer.id == player.id)
+                    {
+                        // set our player ref inside our controller
+                        player.cube.GetComponent<Character>().playerRef = serverPlayer;
+                    }
                 }
-                else
+            }
+
+            // Update other Players
+            else
+            {
+                foreach (Player serverPlayer in lastestGameState.players)
                 {
-                    PlayerList[k].cube.transform.position = lastestGameState.players[k].position;
+                    if (serverPlayer.id == player.id)
+                    {
+                        player.cube.transform.position = serverPlayer.position;
+                    }
                 }
             }
         }
+
         // Inside Player Cube Script
     }
 

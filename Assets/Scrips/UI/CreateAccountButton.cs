@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PaladinButton : MonoBehaviour
+public class CreateAccountButton : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,6 @@ public class PaladinButton : MonoBehaviour
     }
     public void OnButtonPress()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Create Account");
     }
 }
