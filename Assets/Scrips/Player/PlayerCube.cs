@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerCube : MonoBehaviour
 {
     
-    public NetworkMan netWorkManRef;
-    public NetworkMan.Player playerRef;
+    public NetworkClient1 netWorkManRef;
+    public NetworkClient1.Player playerRef;
     public Camera cubeCamera;
     public Canvas cubeCanvas;
 

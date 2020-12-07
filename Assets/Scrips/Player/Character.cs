@@ -25,13 +25,13 @@ public class Character : MonoBehaviour
     public Rigidbody rigidBody;
 
     // Server Variables
-    public NetworkMan networkManRef;
-    public NetworkMan.Player playerRef;
+    public NetworkClient networkManRef;
+    public NetworkObjects.NetworkPlayer playerRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (networkManRef.uniqueID.uniqueID == playerRef.id)
+        if (networkManRef.clientID == playerRef.id)
         {
             characterCamera.enabled = true;
             characterCanvas.enabled = true;
@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (networkManRef.uniqueID.uniqueID == playerRef.id)
+        if (networkManRef.clientID == playerRef.id)
         {
             //Velocity.x = Input.GetAxis("Horizontal");
             //Velocity.z = Input.GetAxis("Vertical");
