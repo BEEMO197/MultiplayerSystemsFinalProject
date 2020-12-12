@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
             characterAudioListener.enabled = true;
 
             playerRef.cube = gameObject;
-            
+            setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
         }
     }
 
@@ -164,7 +164,20 @@ public class Character : MonoBehaviour
         currentClass = newClass;
         //set stats based on newClass
         //use switch case -Monkey man
-        
+        switch(currentClass)
+        {
+            case Classes.ARCHER:                
+                break;
+                
+            case Classes.FIGHTER:               
+                break;
+                
+            case Classes.HEAVY:               
+                break;
+
+            case Classes.ROGUE:
+                break;
+        }
     }
 }
 
