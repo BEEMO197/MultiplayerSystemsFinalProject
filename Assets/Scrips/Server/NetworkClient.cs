@@ -137,7 +137,7 @@ public class NetworkClient : MonoBehaviour
             case Commands.PLAYER_LEFT:
                 PlayerLeaveMsg plMsg = JsonUtility.FromJson<PlayerLeaveMsg>(recMsg);
                 Debug.Log("Player Leave message received!");
-                KillPlayer(plMsg.player);
+                KillClientPlayer(plMsg.player);
                 OnDisconnect();
 
                 break;
@@ -147,7 +147,7 @@ public class NetworkClient : MonoBehaviour
         }
     }
     
-    void KillPlayer(NetworkObjects.NetworkPlayer leavingPlayer)
+    void KillClientPlayer(NetworkObjects.NetworkPlayer leavingPlayer)
     {
         foreach(NetworkObjects.NetworkPlayer player in playerList)
         {

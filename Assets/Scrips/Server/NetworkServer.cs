@@ -139,9 +139,26 @@ public class NetworkServer : MonoBehaviour
                 Debug.Log("Server update message received!");
                 break;
 
+            case Commands.PLAYER_LEFT:
+                PlayerLeaveMsg plMsg = JsonUtility.FromJson<PlayerLeaveMsg>(recMsg);
+                Debug.Log("Player leave message recieved!");
+                KillServerPlayer(plMsg.player);
+                break;
+
             default:
                 Debug.Log("SERVER ERROR: Unrecognized message received!");
                 break;
+        }
+    }
+
+    void KillServerPlayer(NetworkObjects.NetworkPlayer leavingPlayer)
+    {
+        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
+        {
+            if (player.id == leavingPlayer.id)
+            {
+                serverPlayerList.Remove(player);
+            }
         }
     }
 
@@ -193,7 +210,6 @@ public class NetworkServer : MonoBehaviour
             // Check if there is another new connection
             c = m_Driver.Accept();
         }
-
 
         // Read Incoming Messages
         DataStreamReader stream;
