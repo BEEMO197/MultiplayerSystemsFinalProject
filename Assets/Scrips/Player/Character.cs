@@ -166,16 +166,20 @@ public class Character : MonoBehaviour
         //use switch case -Monkey man
         switch(currentClass)
         {
-            case Classes.ARCHER:                
+            case Classes.ARCHER:
+                setRange(200);
                 break;
                 
-            case Classes.FIGHTER:               
+            case Classes.FIGHTER:
+                setDamage(20);
                 break;
                 
-            case Classes.HEAVY:               
+            case Classes.HEAVY:
+                setHealth(200);
                 break;
 
             case Classes.ROGUE:
+                setSpeed(15);
                 break;
         }
     }
