@@ -45,45 +45,48 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (networkManRef.clientID == playerRef.id)
+        if (networkManRef != null)
         {
-            //Velocity.x = Input.GetAxis("Horizontal");
-            //Velocity.z = Input.GetAxis("Vertical");
-
-            transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
-
-            Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
-            Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
-
-            if (Input.GetAxis("Horizontal") != 0)
+            if (networkManRef.clientID == playerRef.id)
             {
-                velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
-            }
+                //Velocity.x = Input.GetAxis("Horizontal");
+                //Velocity.z = Input.GetAxis("Vertical");
 
-            if (Input.GetAxis("Vertical") != 0)
-            {
-                velocityF = (transform.forward * Input.GetAxis("Vertical")) * speed;
-            }
+                transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
 
-            rigidBody.velocity = velocityR + velocityF;
+                Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+                Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
 
-            velocityR = new Vector3(0.0f, 0.0f, 0.0f);
-            velocityF = new Vector3(0.0f, 0.0f, 0.0f);
-
-            //rigidBody.velocity *= speed;
-            //Vector3.ClampMagnitude(rigidBody.velocity, speed);
-            //transform.position += Velocity;
-
-            if (Input.GetAxis("Fire1") > 0)
-            {
-                if (Time.frameCount % 40 == 0)
+                if (Input.GetAxis("Horizontal") != 0)
                 {
-                    GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                    velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
                 }
-            }
 
-            playerRef.cubPos = transform.position;
-            playerRef.cubRot = transform.rotation;
+                if (Input.GetAxis("Vertical") != 0)
+                {
+                    velocityF = (transform.forward * Input.GetAxis("Vertical")) * speed;
+                }
+
+                rigidBody.velocity = velocityR + velocityF;
+
+                velocityR = new Vector3(0.0f, 0.0f, 0.0f);
+                velocityF = new Vector3(0.0f, 0.0f, 0.0f);
+
+                //rigidBody.velocity *= speed;
+                //Vector3.ClampMagnitude(rigidBody.velocity, speed);
+                //transform.position += Velocity;
+
+                if (Input.GetAxis("Fire1") > 0)
+                {
+                    if (Time.frameCount % 40 == 0)
+                    {
+                        GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                    }
+                }
+
+                playerRef.cubPos = transform.position;
+                playerRef.cubRot = transform.rotation;
+            }
         }
     }
     public float getHealth()
