@@ -122,7 +122,7 @@ public class NetworkClient : MonoBehaviour
                     {
                         foreach (NetworkObjects.NetworkPlayer serverPlayer in suMsg.players)
                         {
-                            if (serverPlayer.id != clientPlayer.id)
+                            if (serverPlayer.id == clientPlayer.id)
                             {
                                 clientPlayer.cube.transform.position = serverPlayer.cubPos;
                             }
