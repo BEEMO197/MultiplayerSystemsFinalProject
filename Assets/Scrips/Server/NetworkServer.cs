@@ -172,6 +172,7 @@ public class NetworkServer : MonoBehaviour
             if (player.id == m_Connections[i].InternalId.ToString())
             {
                 plMsg.player = player;
+                KillServerPlayer(plMsg.player);
             }
         }
 
