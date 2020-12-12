@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     // Client VARIABLES
     public Classes currentClass = Classes.DEFAULT;
 
+
     // Game Variables
     public float health = 100.0f;
     public float damage = 10.0f;
