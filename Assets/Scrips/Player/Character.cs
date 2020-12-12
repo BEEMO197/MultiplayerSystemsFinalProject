@@ -168,19 +168,26 @@ public class Character : MonoBehaviour
         switch(currentClass)
         {
             case Classes.ARCHER:
-                setRange(200);
+                setRange(200.0f);
+                setDamage(7.0f);
                 break;
                 
             case Classes.FIGHTER:
-                setDamage(20);
+                setDamage(20.0f);
+                setRange(5.0f);
                 break;
                 
             case Classes.HEAVY:
                 setHealth(200);
+                setSpeed(7.0f);
                 break;
 
             case Classes.ROGUE:
-                setSpeed(15);
+                setSpeed(15.0f);
+                setHealth(80.0f);
+                break;
+            default:
+                Debug.Log("How did we get here?");
                 break;
         }
     }
