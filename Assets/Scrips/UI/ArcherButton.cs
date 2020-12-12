@@ -4,20 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ArcherButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnButtonPress()
     {
+        PlayerPrefs.SetInt("Character_Selected_Class", (int)Classes.ARCHER);
         SceneManager.LoadScene("Game");
     }
 }

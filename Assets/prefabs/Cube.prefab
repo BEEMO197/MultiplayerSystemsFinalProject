@@ -38,6 +38,7 @@ RectTransform:
   - {fileID: 4551070472638957147}
   - {fileID: 7552079783385341034}
   - {fileID: 828462929103786536}
+  - {fileID: 4446630739660668711}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,6 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5293eb09c74f0444195285bf439e81e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 8711973873790694589}
+  health: 100
+  damage: 10
+  speed: 10
+  range: 100
+  level: 1
+  score: 0
   characterCamera: {fileID: 7667257896905704196}
   characterCanvas: {fileID: 1803578063282329605}
   characterAudioListener: {fileID: 444298995371833122}
@@ -1142,6 +1150,68 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7902422488525268556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4446630739660668711}
+  - component: {fileID: 8711973873790694589}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4446630739660668711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902422488525268556}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.017456055, y: 0.84213257, z: 2.0007665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8674844965409355590}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8711973873790694589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7902422488525268556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6739cc239a007e4a9060e133c8dff08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  health: 100
+  damage: 10
+  speed: 10
+  range: 100
+  level: 1
+  score: 0
+  characterCamera: {fileID: 0}
+  characterCanvas: {fileID: 0}
+  characterAudioListener: {fileID: 0}
+  bulletRef: {fileID: 0}
+  rigidBody: {fileID: 0}
+  networkManRef: {fileID: 0}
+  playerRef:
+    id: 
+    cube: {fileID: 0}
+    cubeColor: {r: 0.97151005, g: 0.15917325, b: 0.74902236, a: 1}
+    cubPos: {x: 0, y: 0, z: 0}
+    cubRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8123218736606689027
 GameObject:
   m_ObjectHideFlags: 0

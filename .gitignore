@@ -58,3 +58,13 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+.vsconfig
+Assets/NetCodeGenerated/Unity.NetCode.Generated/GhostComponentSerializerCollection.cs
+Assets/NetCodeGenerated/Unity.NetCode.Generated/Unity.NetCode.Generated.asmdef
+Assets/NetCodeGenerated/Unity.NetCode.Generated/Unity.NetCode.GhostOwnerComponentSerializer.cs
+Assets/NetCodeGenerated/Unity.NetCode.Generated/Unity.NetCode.HeartbeatComponentSerializer.cs
+Assets/NetCodeGenerated/Unity.NetCode.Generated/Unity.NetCode.NullCommandDataSerializer.cs
+Assets/NetCodeGenerated/Unity.Transforms.Generated/GhostComponentSerializerCollection.cs
+Assets/NetCodeGenerated/Unity.Transforms.Generated/Unity.Transforms.Generated.asmdef
+Assets/NetCodeGenerated/Unity.Transforms.Generated/Unity.Transforms.RotationSerializer.cs
+Assets/NetCodeGenerated/Unity.Transforms.Generated/Unity.Transforms.TranslationSerializer.cs

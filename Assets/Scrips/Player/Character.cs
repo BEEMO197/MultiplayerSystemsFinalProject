@@ -2,19 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Classes
+{
+    DEFAULT,
+    ARCHER,
+    FIGHTER,
+    HEAVY,
+    ROGUE,
+    count
+};
+
 public class Character : MonoBehaviour
 {
     // Client VARIABLES
+    public Classes currentClass = Classes.DEFAULT;
 
     // Game Variables
-    private float health = 100.0f;
-    private float damage = 10.0f;
-    private float speed = 10.0f;
-    private float range = 100.0f;
+    public float health = 100.0f;
+    public float damage = 10.0f;
+    public float speed = 10.0f;
+    public float range = 100.0f;
 
     // Ui Variables
-    private int level = 1;
-    private int score = 0;
+    public int level = 1;
+    public int score = 0;
 
     // Components
     public Camera characterCamera;
@@ -148,7 +159,13 @@ public class Character : MonoBehaviour
         score = _score;
     }
 
-
+    public void setClass(Classes newClass)
+    {
+        currentClass = newClass;
+        //set stats based on newClass
+        //use switch case -Monkey man
+        
+    }
 }
 
 
