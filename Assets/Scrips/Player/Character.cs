@@ -36,6 +36,9 @@ public class Character : MonoBehaviour
             characterCamera.enabled = true;
             characterCanvas.enabled = true;
             characterAudioListener.enabled = true;
+
+            playerRef.cube = gameObject;
+            
         }
     }
 
@@ -78,6 +81,9 @@ public class Character : MonoBehaviour
                     GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
                 }
             }
+
+            playerRef.cubPos = transform.position;
+            playerRef.cubRot = transform.rotation;
         }
     }
     public float getHealth()

@@ -21,6 +21,8 @@ public class NetworkClient : MonoBehaviour
     public List<NetworkObjects.NetworkPlayer> playerList = new List<NetworkObjects.NetworkPlayer>();
     public GameObject cubeRef;
 
+    public ServerUpdateMsg suMsg;
+
     void Start ()
     {
         m_Driver = NetworkDriver.Create();
@@ -109,7 +111,7 @@ public class NetworkClient : MonoBehaviour
                 break;
 
             case Commands.SERVER_UPDATE:
-                ServerUpdateMsg suMsg = JsonUtility.FromJson<ServerUpdateMsg>(recMsg);
+                suMsg = JsonUtility.FromJson<ServerUpdateMsg>(recMsg);
                 Debug.Log("Server update message received!");
                 foreach(NetworkObjects.NetworkPlayer clientPlayer in playerList)
                 {
@@ -120,7 +122,7 @@ public class NetworkClient : MonoBehaviour
                     {
                         foreach (NetworkObjects.NetworkPlayer serverPlayer in suMsg.players)
                         {
-                            if (serverPlayer.id == clientPlayer.id)
+                            if (serverPlayer.id != clientPlayer.id)
                             {
                                 clientPlayer.cube.transform.position = serverPlayer.cubPos;
                             }

@@ -231,7 +231,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375755109181076683}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4619784345865488395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,7 +1282,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8408293563411244578}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
