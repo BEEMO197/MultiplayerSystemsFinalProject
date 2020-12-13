@@ -59,6 +59,7 @@ public class Character : MonoBehaviour
             playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class")];
             username.SetText(PlayerPrefs.GetString("Player_Username"));
             usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
+
             setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
             
         }

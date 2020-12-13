@@ -49,5 +49,12 @@ public class BulletBehaviour : MonoBehaviour
         
     }
 
+    void OnColliderEnter(Collider col)
+    {
+        if(col.CompareTag("Enemy"))
+        {
+            Debug.Log("Bullet Hit Enemy");
+        }
+    }
     
 }

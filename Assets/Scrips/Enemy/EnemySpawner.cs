@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attributes : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
+    NetworkClient connectedClient;
+    NetworkObjects.NetworkPlayer connectedPlayer;
+
     // Start is called before the first frame update
     void Start()
     {

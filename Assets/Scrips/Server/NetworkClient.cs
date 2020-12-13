@@ -22,6 +22,8 @@ public class NetworkClient : MonoBehaviour
     // port 12345
 
     public string clientID;
+    public NetworkObjects.NetworkPlayer connectedPlayer;
+
     public List<NetworkObjects.NetworkPlayer> playerList = new List<NetworkObjects.NetworkPlayer>();
     public GameObject cubeRef;
 
@@ -29,6 +31,7 @@ public class NetworkClient : MonoBehaviour
 
     void Start ()
     {
+        DontDestroyOnLoad(this);
         m_Driver = NetworkDriver.Create();
         m_Connection = default(NetworkConnection);
         var endpoint = NetworkEndPoint.Parse(serverIP,serverPort);
