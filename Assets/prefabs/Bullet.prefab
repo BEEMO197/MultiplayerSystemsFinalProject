@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1978615154677389633}
   - component: {fileID: 5120466443191124530}
   - component: {fileID: -2842670513057156742}
+  - component: {fileID: -8170247699414452971}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +109,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2babefa760ac3046acc07a62b9ec4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  damage: 100
-  speed: 10
+  range: 50
+  damage: 50
+  speed: 0.2
+--- !u!64 &-8170247699414452971
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697237360588728740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

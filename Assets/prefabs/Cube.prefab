@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5293eb09c74f0444195285bf439e81e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentClass: 1
+  currentClass: 3
   characterMesh:
   - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 3923001220205022435, guid: 3262fb89f463c224cbfc2e3bb8f22c5c, type: 3}

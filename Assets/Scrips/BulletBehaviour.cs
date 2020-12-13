@@ -40,5 +40,6 @@ public class BulletBehaviour : MonoBehaviour
         {
             collision.gameObject.GetComponent<Character>().takeDamage(damage);
         }
+        
     }
 }
