@@ -112,7 +112,7 @@ public class Character : MonoBehaviour
                     if (Physics.Raycast(ray, out hit))
                     {
                         Vector3 clickPosition = hit.point;
-                        clickPosition.y = 0.0f;
+                        clickPosition.y = 1.0f;
                         Debug.Log(hit.point);
                         Debug.Log("Player Position: " + transform.position);
                         bulletRef.GetComponent<BulletBehaviour>().range = getRange();
@@ -234,7 +234,7 @@ public class Character : MonoBehaviour
                 break;
 
             case Classes.ROGUE:
-                setRange(100.0f);
+                setRange(50.0f);
                 setDamage(12.0f);
                 setPlayerSpeed(20.0f);
                 setBulletSpeed(3.0f);
