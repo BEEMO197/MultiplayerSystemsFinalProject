@@ -64,7 +64,7 @@ public class Character : MonoBehaviour
                 //Velocity.x = Input.GetAxis("Horizontal");
                 //Velocity.z = Input.GetAxis("Vertical");
 
-                transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
+                //transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
 
                 Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
                 Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
@@ -72,6 +72,7 @@ public class Character : MonoBehaviour
                 if (Input.GetAxis("Horizontal") != 0)
                 {
                     velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.5f, 0.0f);
                 }
 
                 if (Input.GetAxis("Vertical") != 0)
@@ -88,12 +89,28 @@ public class Character : MonoBehaviour
                 //Vector3.ClampMagnitude(rigidBody.velocity, speed);
                 //transform.position += Velocity;
 
-                if (Input.GetAxis("Fire1") > 0)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (Time.frameCount % 40 == 0)
+                    //if (Time.frameCount % 40 == 0)
+                    //{
+                    //GameObject.Instantiate(bulletRef, transform.position + (characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized, Quaternion.LookRotation((characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized));
+                    //Debug.Log(characterCamera.ScreenToWorldPoint(Input.mousePosition));
+                    //Debug.Log(characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)));
+                    //Debug.Log("World mouse position: " + characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition, characterCamera.nearClipPlane));
+                    Ray ray = characterCamera.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                        Vector3 clickPosition = hit.point;
+                        clickPosition.y = 0.0f;
+                        Debug.Log(hit.point);
+                        Debug.Log("Player Position: " + transform.position);
+                        GameObject.Instantiate(bulletRef, (transform.position + (clickPosition - transform.position).normalized), Quaternion.LookRotation((clickPosition - transform.position).normalized));
+
                     }
+
+
+                    //}
                 }
 
                 playerRef.cubPos = transform.position;
