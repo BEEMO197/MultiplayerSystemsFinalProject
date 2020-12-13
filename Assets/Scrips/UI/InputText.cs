@@ -25,6 +25,7 @@ public class InputText : MonoBehaviour
         {
             Debug.Log("username found");
             username = userInputField.text;
+            PlayerPrefs.SetString("Player_Username", username);
         }
     }
     public void setPassword()
@@ -39,6 +40,7 @@ public class InputText : MonoBehaviour
             Debug.Log("password found");
 
             password = passInputField.text;
+            PlayerPrefs.SetString("Player_Password", password);
         }
     }
 

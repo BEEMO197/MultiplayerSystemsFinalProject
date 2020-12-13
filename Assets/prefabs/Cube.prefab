@@ -136,12 +136,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5293eb09c74f0444195285bf439e81e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentClass: 0
+  currentClass: 1
+  characterMesh:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 3923001220205022435, guid: 3262fb89f463c224cbfc2e3bb8f22c5c, type: 3}
+  - {fileID: 6926709513612218970, guid: 80ed93e4686941043855fd575a11c49a, type: 3}
+  - {fileID: -7158247418717641203, guid: e8e57af8e7ecac347b5fca95065e14ed, type: 3}
+  - {fileID: 2534964839176971238, guid: 9fe0404a3276a75499855041c51ed90f, type: 3}
+  meshFilter: {fileID: -9050852751033478381}
   health: 100
   damage: 10
   playerSpeed: 0
   bulletSpeed: 0
   range: 100
+  isSetToDie: 0
   level: 1
   score: 0
   characterCamera: {fileID: 7667257896905704196}
@@ -149,6 +157,8 @@ MonoBehaviour:
   characterAudioListener: {fileID: 444298995371833122}
   bulletRef: {fileID: 8697237360588728740, guid: c0a35bcf88e828540b2c43646be579a4, type: 3}
   rigidBody: {fileID: 4688296819494723058}
+  username: {fileID: 7130244868805814862}
+  usernameOverhead: {fileID: 1471282008163311423}
   networkManRef: {fileID: 0}
   playerRef:
     id: 
@@ -267,7 +277,7 @@ GameObject:
   - component: {fileID: 5346101832785171348}
   - component: {fileID: 3846852350505802114}
   m_Layer: 9
-  m_Name: Text (TMP)
+  m_Name: usernameOverhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,8 +614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 140}
-  m_SizeDelta: {x: -88, y: -304}
+  m_AnchoredPosition: {x: 0, y: 146.32}
+  m_SizeDelta: {x: -27.554993, y: -320.445}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6813048499453718473
 CanvasRenderer:
@@ -662,8 +672,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -975,8 +985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -514, y: -174}
-  m_SizeDelta: {x: -1070.3103, y: -395.45612}
+  m_AnchoredPosition: {x: -450.3, y: -126.93}
+  m_SizeDelta: {x: -1197.6837, y: -395.45612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1675501585633546875
 CanvasRenderer:
@@ -1050,8 +1060,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.00002861, y: 0}
+  m_SizeDelta: {x: 161.31628, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4162608047271722718
 CanvasRenderer:
@@ -1108,8 +1118,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1290,7 +1300,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8408293563411244578}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1356,7 +1366,7 @@ GameObject:
   - component: {fileID: 7130244868805814862}
   - component: {fileID: 3492980205774884762}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1499,6 +1509,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3712386790554006763}
     m_Modifications:
+    - target: {fileID: 1667312944990280721, guid: e7a7ff5e07f63d84f959d8f0a27f296c, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1667312944990280722, guid: e7a7ff5e07f63d84f959d8f0a27f296c, type: 3}
       propertyPath: m_Name
       value: XP Bar

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public enum Classes
 {
     DEFAULT,
@@ -16,8 +16,8 @@ public class Character : MonoBehaviour
 {
     // Client VARIABLES
     public Classes currentClass = Classes.DEFAULT;
-
-
+    public Mesh[] characterMesh;
+    public MeshFilter meshFilter;
     // Game Variables
     public float health;
     public float damage;
@@ -38,7 +38,8 @@ public class Character : MonoBehaviour
 
     public GameObject bulletRef;
     public Rigidbody rigidBody;
-
+    public TextMeshProUGUI username;
+    public GameObject usernameOverhead;
     // Server Variables
     public NetworkClient networkManRef;
     public NetworkObjects.NetworkPlayer playerRef;
@@ -46,6 +47,8 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //meshFilter.mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class") - 1];
+        //GetComponent<MeshFilter>().mesh = characterMesh[0];
         if (networkManRef.clientID == playerRef.id)
         {
             characterCamera.enabled = true;
@@ -53,6 +56,9 @@ public class Character : MonoBehaviour
             characterAudioListener.enabled = true;
 
             playerRef.cube = gameObject;
+            playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class")];
+            username.SetText(PlayerPrefs.GetString("Player_Username"));
+            usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
             //setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
             setClass();
         }

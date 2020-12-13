@@ -12,8 +12,15 @@ public class UsernameBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        username.SetText(playerCube.GetComponent<PlayerCube>().playerRef.id);
         
+        if(PlayerPrefs.GetString("Player_Username") == "")
+        {
+            username.SetText(playerCube.GetComponent<PlayerCube>().playerRef.id);
+        }
+        else
+        {
+            
+        }
     }
 
     
