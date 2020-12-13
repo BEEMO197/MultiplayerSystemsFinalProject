@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     public Camera characterCamera;
     public Canvas characterCanvas;
     public AudioListener characterAudioListener;
-
+    public HealthBar healthBar;
     public GameObject bulletRef;
     public Rigidbody rigidBody;
     public TextMeshProUGUI username;
@@ -132,6 +132,7 @@ public class Character : MonoBehaviour
                 playerRef.cubRot = transform.rotation;
             }
         }
+        
     }
     public float getHealth()
     {
@@ -215,7 +216,6 @@ public class Character : MonoBehaviour
                 setPlayerSpeed(15.0f);
                 setBulletSpeed(5.0f);
                 setHealth(80.0f);
-                Debug.Log("archer");
                 break;
                 
             case Classes.FIGHTER:
@@ -250,6 +250,7 @@ public class Character : MonoBehaviour
                 setHealth(100.0f);
                 break;
         }
+        healthBar.SetMaxHealth(getHealth());
     }
 
     public void takeDamage(float damageTaken)
@@ -258,6 +259,12 @@ public class Character : MonoBehaviour
         if(health <= 0)
         {
             isSetToDie = true;
+        }
+        else
+        {
+            healthBar.SetHealth(health);
+            //healthBar.slider.value = 50.0f;
+            Debug.Log("take damage");
         }
     }
 
@@ -268,7 +275,7 @@ public class Character : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Take damage");
-            takeDamage(10);
+            takeDamage(10.0f);
         }
     }
 }
