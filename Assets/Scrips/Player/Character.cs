@@ -59,8 +59,8 @@ public class Character : MonoBehaviour
             playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class")];
             username.SetText(PlayerPrefs.GetString("Player_Username"));
             usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
-            //setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
-            setClass();
+            setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
+            
         }
     }
 
@@ -201,7 +201,7 @@ public class Character : MonoBehaviour
         score = _score;
     }
 
-    public void setClass(Classes newClass = Classes.DEFAULT)
+    public void setClass(Classes newClass )
     {
         currentClass = newClass;
         //set stats based on newClass
@@ -214,6 +214,7 @@ public class Character : MonoBehaviour
                 setPlayerSpeed(12.0f);
                 setBulletSpeed(1.0f);
                 setHealth(80.0f);
+                Debug.Log("archer");
                 break;
                 
             case Classes.FIGHTER:
