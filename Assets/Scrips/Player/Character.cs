@@ -276,6 +276,7 @@ public class Character : MonoBehaviour
         {
             Debug.Log("Take damage");
             takeDamage(10.0f);
+            other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(10.0f);
         }
     }
 }
