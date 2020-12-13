@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     public float bulletSpeed;
     public float range;
 
+    public bool isSetToDie = false;
+
     // Ui Variables
     public int level = 1;
     public int score = 0;
