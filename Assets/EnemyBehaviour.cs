@@ -7,37 +7,41 @@ public class EnemyBehaviour : MonoBehaviour
     
 
     
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullets")
         {
+            Debug.Log("OnTriggerEnter");
             Destroy(gameObject);
-            Debug.Log("Collide");
+
         }
     }
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Bullets")
         {
+            Debug.Log("OnTriggerExit");
             Destroy(gameObject);
-            Debug.Log("Collide");
+
         }
     }
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Bullets")
         {
+            Debug.Log("OnTriggerStay");
             Destroy(gameObject);
-            Debug.Log("Collide");
+
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullets")
         {
+            Debug.Log("OnCollisionEnter");
             Destroy(gameObject);
-            Debug.Log("Collide");
+
         }
     }
 }

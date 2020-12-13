@@ -113,8 +113,8 @@ public class Character : MonoBehaviour
                     {
                         Vector3 clickPosition = hit.point;
                         clickPosition.y = 1.0f;
-                        Debug.Log(hit.point);
-                        Debug.Log("Player Position: " + transform.position);
+                        //Debug.Log(hit.point);
+                        //Debug.Log("Player Position: " + transform.position);
                         bulletRef.GetComponent<BulletBehaviour>().range = getRange();
                         bulletRef.GetComponent<BulletBehaviour>().speed = getBulletSpeed();
                         bulletRef.GetComponent<BulletBehaviour>().damage = getDamage();
@@ -257,6 +257,17 @@ public class Character : MonoBehaviour
         if(health <= 0)
         {
             isSetToDie = true;
+        }
+    }
+
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Take damage");
+            takeDamage(10);
         }
     }
 }

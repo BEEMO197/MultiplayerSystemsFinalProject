@@ -39,7 +39,15 @@ public class BulletBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Character>().takeDamage(damage);
+            Debug.Log("Bullet hit a player");
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Bullet hit an enemy");
         }
         
     }
+
+    
 }
