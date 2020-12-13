@@ -19,10 +19,11 @@ public class Character : MonoBehaviour
 
 
     // Game Variables
-    public float health = 100.0f;
-    public float damage = 10.0f;
-    public float speed = 10.0f;
-    public float range = 100.0f;
+    public float health;
+    public float damage;
+    public float playerSpeed;
+    public float bulletSpeed;
+    public float range;
 
     // Ui Variables
     public int level = 1;
@@ -50,7 +51,8 @@ public class Character : MonoBehaviour
             characterAudioListener.enabled = true;
 
             playerRef.cube = gameObject;
-            setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
+            //setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
+            setClass();
         }
     }
 
@@ -64,19 +66,20 @@ public class Character : MonoBehaviour
                 //Velocity.x = Input.GetAxis("Horizontal");
                 //Velocity.z = Input.GetAxis("Vertical");
 
-                transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
+                //transform.Rotate(0.0f, Input.GetAxis("Mouse X"), 0.0f);
 
                 Vector3 velocityR = new Vector3(0.0f, 0.0f, 0.0f);
                 Vector3 velocityF = new Vector3(0.0f, 0.0f, 0.0f);
 
                 if (Input.GetAxis("Horizontal") != 0)
                 {
-                    velocityR = (transform.right * Input.GetAxis("Horizontal")) * speed;
+                    velocityR = (transform.right * Input.GetAxis("Horizontal")) * playerSpeed;
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.5f, 0.0f);
                 }
 
                 if (Input.GetAxis("Vertical") != 0)
                 {
-                    velocityF = (transform.forward * Input.GetAxis("Vertical")) * speed;
+                    velocityF = (transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
                 }
 
                 rigidBody.velocity = velocityR + velocityF;
@@ -88,12 +91,32 @@ public class Character : MonoBehaviour
                 //Vector3.ClampMagnitude(rigidBody.velocity, speed);
                 //transform.position += Velocity;
 
-                if (Input.GetAxis("Fire1") > 0)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (Time.frameCount % 40 == 0)
+                    //if (Time.frameCount % 40 == 0)
+                    //{
+                    //GameObject.Instantiate(bulletRef, transform.position + (characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized, Quaternion.LookRotation((characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized));
+                    //Debug.Log(characterCamera.ScreenToWorldPoint(Input.mousePosition));
+                    //Debug.Log(characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)));
+                    //Debug.Log("World mouse position: " + characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition, characterCamera.nearClipPlane));
+                    Ray ray = characterCamera.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        GameObject.Instantiate(bulletRef, transform.position + transform.forward, transform.rotation);
+                        Vector3 clickPosition = hit.point;
+                        clickPosition.y = 0.0f;
+                        Debug.Log(hit.point);
+                        Debug.Log("Player Position: " + transform.position);
+                        bulletRef.GetComponent<BulletBehaviour>().range = getRange();
+                        bulletRef.GetComponent<BulletBehaviour>().speed = getBulletSpeed();
+                        bulletRef.GetComponent<BulletBehaviour>().damage = getDamage();
+
+                        GameObject.Instantiate(bulletRef, (transform.position + (clickPosition - transform.position).normalized), Quaternion.LookRotation((clickPosition - transform.position).normalized));
+
                     }
+
+
+                    //}
                 }
 
                 playerRef.cubPos = transform.position;
@@ -111,9 +134,14 @@ public class Character : MonoBehaviour
         return damage;
     }
 
-    public float getSpeed()
+    public float getPlayerSpeed()
     {
-        return speed;
+        return playerSpeed;
+    }
+
+    public float getBulletSpeed()
+    {
+        return bulletSpeed;
     }
 
     public float getRange()
@@ -140,9 +168,14 @@ public class Character : MonoBehaviour
     {
         damage = _damage;
     }
-    public void setSpeed(float _speed)
+    public void setPlayerSpeed(float _speed)
     {
-        speed = _speed;
+        playerSpeed = _speed;
+    }
+
+    public void setBulletSpeed(float _speed)
+    {
+        bulletSpeed = _speed;
     }
 
     public void setRange(float _range)
@@ -160,7 +193,7 @@ public class Character : MonoBehaviour
         score = _score;
     }
 
-    public void setClass(Classes newClass)
+    public void setClass(Classes newClass = Classes.DEFAULT)
     {
         currentClass = newClass;
         //set stats based on newClass
@@ -168,19 +201,43 @@ public class Character : MonoBehaviour
         switch(currentClass)
         {
             case Classes.ARCHER:
-                setRange(200);
+                setRange(200.0f);
+                setDamage(7.0f);
+                setPlayerSpeed(12.0f);
+                setBulletSpeed(1.0f);
+                setHealth(80.0f);
                 break;
                 
             case Classes.FIGHTER:
-                setDamage(20);
+                setRange(200.0f);
+                setDamage(7.0f);
+                setPlayerSpeed(12.0f);
+                setBulletSpeed(1.0f);
+                setHealth(80.0f);
                 break;
                 
             case Classes.HEAVY:
-                setHealth(200);
+                setRange(200.0f);
+                setDamage(7.0f);
+                setPlayerSpeed(12.0f);
+                setBulletSpeed(1.0f);
+                setHealth(80.0f);
                 break;
 
             case Classes.ROGUE:
-                setSpeed(15);
+                setRange(200.0f);
+                setDamage(7.0f);
+                setPlayerSpeed(12.0f);
+                setBulletSpeed(1.0f);
+                setHealth(80.0f);
+                break;
+            default:
+                Debug.Log("No class set! Default attributes have been set.");
+                setRange(50.0f);
+                setDamage(10.0f);
+                setPlayerSpeed(20.0f);
+                setBulletSpeed(1.0f);
+                setHealth(100.0f);
                 break;
         }
     }
