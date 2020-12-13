@@ -17,6 +17,10 @@ public class NetworkClient : MonoBehaviour
     public string serverIP;
     public ushort serverPort;
 
+    // Server IP: 52.203.158.53
+    // local/unity IP: 127.0.0.1
+    // port 12345
+
     public string clientID;
     public List<NetworkObjects.NetworkPlayer> playerList = new List<NetworkObjects.NetworkPlayer>();
     public GameObject cubeRef;

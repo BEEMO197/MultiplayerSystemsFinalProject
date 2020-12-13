@@ -68,7 +68,8 @@ public class NetworkServer : MonoBehaviour
     void OnConnect(NetworkConnection c)
     {
         m_Connections.Add(c);
-        Debug.Log("Accepted a connection");
+        Debug.Log("Accepted a connection, Number of Connections: " + m_Connections.Length);
+        Debug.Log("Number of Players currently in the game: " + serverPlayerList.Count());
 
         // Example to send a handshake message:
         HandshakeMsg m = new HandshakeMsg();
@@ -92,10 +93,25 @@ public class NetworkServer : MonoBehaviour
             }
         }
 
-        serverPlayerList.Add(connectingPlayer);
+        if (serverPlayerList.Count() > 0)
+        {
+            foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
+            {
+                if (player.id != connectingPlayer.id)
+                {
+                    serverPlayerList.Add(connectingPlayer);
+                }
+            }
+        }
+        else
+        {
+            serverPlayerList.Add(connectingPlayer);
+        }
 
         foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
         {
+            Debug.Log("Creating a new Player...");
+
             PlayerJoinMessage pjMsg2 = new PlayerJoinMessage();
             pjMsg2.player = player;
             SendToClient(JsonUtility.ToJson(pjMsg2), c);
@@ -118,6 +134,7 @@ public class NetworkServer : MonoBehaviour
                 PlayerUpdateMsg puMsg = JsonUtility.FromJson<PlayerUpdateMsg>(recMsg);
                 Debug.Log("Player update message received!");
 
+                Debug.Log("Player List: " + serverPlayerList);
                 foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
                 {
                     if (player.id == puMsg.player.id)
@@ -142,7 +159,7 @@ public class NetworkServer : MonoBehaviour
             case Commands.PLAYER_LEFT:
                 PlayerLeaveMsg plMsg = JsonUtility.FromJson<PlayerLeaveMsg>(recMsg);
                 Debug.Log("Player leave message recieved!");
-                KillServerPlayer(plMsg.player);
+                OnDisconnect(int.Parse(plMsg.player.id));
                 break;
 
             default:
@@ -150,18 +167,6 @@ public class NetworkServer : MonoBehaviour
                 break;
         }
     }
-
-    void KillServerPlayer(NetworkObjects.NetworkPlayer leavingPlayer)
-    {
-        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
-        {
-            if (player.id == leavingPlayer.id)
-            {
-                serverPlayerList.Remove(player);
-            }
-        }
-    }
-
     void OnDisconnect(int i){
         Debug.Log("Client disconnected from server");
 
@@ -172,7 +177,6 @@ public class NetworkServer : MonoBehaviour
             if (player.id == m_Connections[i].InternalId.ToString())
             {
                 plMsg.player = player;
-                KillServerPlayer(plMsg.player);
             }
         }
 
@@ -183,7 +187,6 @@ public class NetworkServer : MonoBehaviour
                 SendToClient(JsonUtility.ToJson(plMsg), client);
             }
         }
-
         m_Connections[i] = default(NetworkConnection);
     }
 
