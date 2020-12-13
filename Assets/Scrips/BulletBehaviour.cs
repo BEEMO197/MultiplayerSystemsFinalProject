@@ -38,7 +38,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Character>().isSetToDie = true;
+            collision.gameObject.GetComponent<Character>().takeDamage(damage);
         }
     }
 }

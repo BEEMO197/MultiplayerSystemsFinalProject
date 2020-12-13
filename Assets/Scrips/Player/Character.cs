@@ -250,6 +250,15 @@ public class Character : MonoBehaviour
                 break;
         }
     }
+
+    public void takeDamage(float damageTaken)
+    {
+        health -= damageTaken;
+        if(health <= 0)
+        {
+            isSetToDie = true;
+        }
+    }
 }
 
 
