@@ -93,20 +93,7 @@ public class NetworkServer : MonoBehaviour
             }
         }
 
-        if (serverPlayerList.Count() > 0)
-        {
-            foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
-            {
-                if (player.id != connectingPlayer.id)
-                {
-                    serverPlayerList.Add(connectingPlayer);
-                }
-            }
-        }
-        else
-        {
-            serverPlayerList.Add(connectingPlayer);
-        }
+        serverPlayerList.Add(connectingPlayer);
 
         foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
         {
@@ -188,6 +175,15 @@ public class NetworkServer : MonoBehaviour
             }
         }
         m_Connections[i] = default(NetworkConnection);
+        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
+        {
+            if (player.id == plMsg.player.id)
+            {
+                Debug.Log("Player Size: " + serverPlayerList.Count());
+                Debug.Log("Disconnecting Player with Id: " + player.id);
+                serverPlayerList.Remove(player);
+            }
+        }
     }
 
     void Update ()
