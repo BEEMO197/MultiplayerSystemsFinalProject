@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
 
                 if (Input.GetAxis("Horizontal") != 0)
                 {
-                    velocityR = (transform.right * Input.GetAxis("Horizontal")) * playerSpeed;
+                    //velocityR = (transform.right * Input.GetAxis("Horizontal")) * playerSpeed;
                     transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.5f, 0.0f);
                 }
 
