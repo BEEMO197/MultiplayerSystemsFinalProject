@@ -122,7 +122,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3422319500031923553
 MonoBehaviour:
@@ -139,7 +139,8 @@ MonoBehaviour:
   currentClass: 0
   health: 100
   damage: 10
-  speed: 10
+  playerSpeed: 0
+  bulletSpeed: 0
   range: 100
   level: 1
   score: 0
@@ -601,10 +602,10 @@ RectTransform:
   m_Father: {fileID: 1204985562398439343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 140}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: -88, y: -304}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6813048499453718473
 CanvasRenderer:
@@ -1375,9 +1376,9 @@ RectTransform:
   m_Father: {fileID: 3712386790554006763}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -253.7}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 120.3}
   m_SizeDelta: {x: 304.26123, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6442595936192795120
