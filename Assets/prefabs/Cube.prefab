@@ -145,10 +145,10 @@ MonoBehaviour:
   - {fileID: 2534964839176971238, guid: 9fe0404a3276a75499855041c51ed90f, type: 3}
   meshFilter: {fileID: -9050852751033478381}
   health: 100
-  damage: 10
-  playerSpeed: 0
+  damage: 7
+  playerSpeed: 12
   bulletSpeed: 0
-  range: 100
+  range: 200
   isSetToDie: 0
   level: 1
   score: 0
