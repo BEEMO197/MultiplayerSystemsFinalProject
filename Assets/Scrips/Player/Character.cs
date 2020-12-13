@@ -212,16 +212,16 @@ public class Character : MonoBehaviour
                 setRange(200.0f);
                 setDamage(7.0f);
                 setPlayerSpeed(12.0f);
-                setBulletSpeed(1.0f);
+                setBulletSpeed(2.0f);
                 setHealth(80.0f);
                 Debug.Log("archer");
                 break;
                 
             case Classes.FIGHTER:
                 setRange(200.0f);
-                setDamage(7.0f);
-                setPlayerSpeed(12.0f);
-                setBulletSpeed(1.0f);
+                setDamage(15.0f);
+                setPlayerSpeed(10.0f);
+                setBulletSpeed(0.5f);
                 setHealth(80.0f);
                 break;
                 
