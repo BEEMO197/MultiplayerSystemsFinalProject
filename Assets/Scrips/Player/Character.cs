@@ -211,34 +211,34 @@ public class Character : MonoBehaviour
             case Classes.ARCHER:
                 setRange(200.0f);
                 setDamage(7.0f);
-                setPlayerSpeed(12.0f);
-                setBulletSpeed(2.0f);
+                setPlayerSpeed(15.0f);
+                setBulletSpeed(5.0f);
                 setHealth(80.0f);
                 Debug.Log("archer");
                 break;
                 
             case Classes.FIGHTER:
-                setRange(200.0f);
+                setRange(75.0f);
                 setDamage(15.0f);
                 setPlayerSpeed(10.0f);
                 setBulletSpeed(0.5f);
-                setHealth(80.0f);
+                setHealth(110.0f);
                 break;
                 
             case Classes.HEAVY:
-                setRange(200.0f);
-                setDamage(7.0f);
-                setPlayerSpeed(12.0f);
-                setBulletSpeed(1.0f);
-                setHealth(80.0f);
+                setRange(50.0f);
+                setDamage(50.0f);
+                setPlayerSpeed(5.0f);
+                setBulletSpeed(0.2f);
+                setHealth(200.0f);
                 break;
 
             case Classes.ROGUE:
-                setRange(200.0f);
-                setDamage(7.0f);
-                setPlayerSpeed(12.0f);
-                setBulletSpeed(1.0f);
-                setHealth(80.0f);
+                setRange(100.0f);
+                setDamage(12.0f);
+                setPlayerSpeed(20.0f);
+                setBulletSpeed(3.0f);
+                setHealth(60.0f);
                 break;
             default:
                 Debug.Log("No class set! Default attributes have been set.");
