@@ -89,6 +89,16 @@ public class NetworkClient : MonoBehaviour
                     pum.player.cubPos = player.cubPos;
                     pum.player.cubRot = player.cubRot;
 
+                    if(pum.player.cube.GetComponent<Character>().bulletFired)
+                    {
+                        PlayerBulletMsg pbMsg = new PlayerBulletMsg();
+                        pbMsg.player = pum.player;
+                        pbMsg.clickedLocation = pum.player.cube.GetComponent<Character>().clickPosition;
+
+                        SendToServer(JsonUtility.ToJson(pbMsg));
+
+                        pum.player.cube.GetComponent<Character>().bulletFired = false;
+                    }
                     SendToServer(JsonUtility.ToJson(pum));
                 }
             }
@@ -117,6 +127,12 @@ public class NetworkClient : MonoBehaviour
             case Commands.PLAYER_UPDATE:
                 PlayerUpdateMsg puMsg = JsonUtility.FromJson<PlayerUpdateMsg>(recMsg);
                 Debug.Log("Player update message received!");
+                break;
+
+            case Commands.PLAYER_BULLET:
+                PlayerBulletMsg pbMsg = JsonUtility.FromJson<PlayerBulletMsg>(recMsg);
+                Debug.Log("Player Bullet Fired Message Recieved!");
+                GameObject.Instantiate(pbMsg.player.cube.GetComponent<Character>().bulletRef, (pbMsg.player.cubPos + (pbMsg.clickedLocation - pbMsg.player.cubPos).normalized), Quaternion.LookRotation((pbMsg.clickedLocation - pbMsg.player.cubPos).normalized));
                 break;
 
             case Commands.PLAYER_JOINED:

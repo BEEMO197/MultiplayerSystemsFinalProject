@@ -6,6 +6,7 @@ namespace NetworkMessages
 {
     public enum Commands{
         PLAYER_UPDATE,
+        PLAYER_BULLET,
         SERVER_UPDATE,
         PLAYER_JOINED,
         PLAYER_LEFT,
@@ -42,6 +43,21 @@ namespace NetworkMessages
     public class PlayerUpdateMsg:NetworkHeader{
         public NetworkObjects.NetworkPlayer player;
         public PlayerUpdateMsg(){      // Constructor
+            cmd = Commands.PLAYER_UPDATE;
+            player = new NetworkObjects.NetworkPlayer();
+        }
+    };
+
+    [System.Serializable]
+    public class PlayerBulletMsg : NetworkHeader
+    {
+        public NetworkObjects.NetworkPlayer player;
+        public Vector3 clickedLocation;
+        public float range;
+        public float bulletSpeed;
+
+        public PlayerBulletMsg()
+        {      // Constructor
             cmd = Commands.PLAYER_UPDATE;
             player = new NetworkObjects.NetworkPlayer();
         }

@@ -132,6 +132,12 @@ public class NetworkServer : MonoBehaviour
                 }
                 break;
 
+            case Commands.PLAYER_BULLET:
+                PlayerBulletMsg pbMsg = JsonUtility.FromJson<PlayerBulletMsg>(recMsg);
+                Debug.Log("Player Bullet Fired!");
+                FireBulletForPlayers(pbMsg, m_Connections[i]);
+                break;
+                
             case Commands.PLAYER_JOINED:
                 PlayerJoinMessage pjMsg = JsonUtility.FromJson<PlayerJoinMessage>(recMsg);
                 Debug.Log("Player join message received!");
@@ -152,6 +158,17 @@ public class NetworkServer : MonoBehaviour
             default:
                 Debug.Log("SERVER ERROR: Unrecognized message received!");
                 break;
+        }
+    }
+
+    void FireBulletForPlayers(PlayerBulletMsg pbMsg, NetworkConnection c)
+    {
+        for (int i = 0; i < m_Connections.Length; i++)
+        {
+            if (m_Connections[i] != c)
+            {
+                SendToClient(JsonUtility.ToJson(pbMsg), m_Connections[i]);
+            }
         }
     }
 

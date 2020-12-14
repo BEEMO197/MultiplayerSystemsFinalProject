@@ -23,6 +23,9 @@ public class Character : MonoBehaviour
     public float damage;
     public float playerSpeed;
     public float bulletSpeed;
+    public bool bulletFired = false;
+    public Vector3 clickPosition;
+
     public float range;
     public float upgradeVariables = 0;
     public bool isSetToDie = false;
@@ -106,33 +109,36 @@ public class Character : MonoBehaviour
                 //Vector3.ClampMagnitude(rigidBody.velocity, speed);
                 //transform.position += Velocity;
 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (!bulletFired)
                 {
-                    //if (Time.frameCount % 40 == 0)
-                    //{
-                    //GameObject.Instantiate(bulletRef, transform.position + (characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized, Quaternion.LookRotation((characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized));
-                    //Debug.Log(characterCamera.ScreenToWorldPoint(Input.mousePosition));
-                    //Debug.Log(characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)));
-                    //Debug.Log("World mouse position: " + characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition, characterCamera.nearClipPlane));
-                    Ray ray = characterCamera.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        Vector3 clickPosition = hit.point;
-                        clickPosition.y = 1.0f;
-                        //Debug.Log(hit.point);
-                        //Debug.Log("Player Position: " + transform.position);
-                        bulletRef.GetComponent<BulletBehaviour>().range = getRange();
-                        bulletRef.GetComponent<BulletBehaviour>().speed = getBulletSpeed();
-                        bulletRef.GetComponent<BulletBehaviour>().damage = getDamage();
+                        //if (Time.frameCount % 40 == 0)
+                        //{
+                        //GameObject.Instantiate(bulletRef, transform.position + (characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized, Quaternion.LookRotation((characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)) - transform.position).normalized));
+                        //Debug.Log(characterCamera.ScreenToWorldPoint(Input.mousePosition));
+                        //Debug.Log(characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f)));
+                        //Debug.Log("World mouse position: " + characterCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition, characterCamera.nearClipPlane));
+                        Ray ray = characterCamera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit))
+                        {
+                            clickPosition = hit.point;
+                            clickPosition.y = 1.0f;
+                            //Debug.Log(hit.point);
+                            //Debug.Log("Player Position: " + transform.position);
+                            bulletRef.GetComponent<BulletBehaviour>().range = getRange();
+                            bulletRef.GetComponent<BulletBehaviour>().speed = getBulletSpeed();
+                            bulletRef.GetComponent<BulletBehaviour>().damage = getDamage();
 
-                        GameObject.Instantiate(bulletRef, (transform.position + (clickPosition - transform.position).normalized), Quaternion.LookRotation((clickPosition - transform.position).normalized));
+                            GameObject.Instantiate(bulletRef, (transform.position + (clickPosition - transform.position).normalized), Quaternion.LookRotation((clickPosition - transform.position).normalized));
+
+                            bulletFired = true;
+                        }
 
 
+                        //}
                     }
-
-
-                    //}
                 }
 
                 playerRef.cubPos = transform.position;
