@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     NetworkClient connectedClient;
     public float health = 100;
     public HealthBar healthBar;
+    public bool isSetToDie = false;
     void Start()
     {
         healthBar.SetMaxHealth(health);
@@ -26,5 +27,9 @@ public class EnemyBehaviour : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health);
+        if(health <= 0)
+        {
+            isSetToDie = true;
+        }
     }
 }
