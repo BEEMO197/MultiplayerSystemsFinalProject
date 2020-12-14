@@ -31,8 +31,8 @@ public class Character : MonoBehaviour
     public int level = 1;
     public int score = 0;
     public float xpNum;
-    public float maxXp;
-    public TextMeshProUGUI healthText, speedText, damageText, rangeText, bulletSpeedText, upgrades;
+    public float maxXp = 100;
+    public TextMeshProUGUI healthText, speedText, damageText, rangeText, bulletSpeedText, upgrades, levels;
     public GameObject upgradePanel;
 
     // Components
@@ -68,6 +68,7 @@ public class Character : MonoBehaviour
             setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
             
         }
+        maxXp = xp.maxXP;
     }
 
     // Update is called once per frame
@@ -137,9 +138,10 @@ public class Character : MonoBehaviour
                 playerRef.cubRot = transform.rotation;
             }
         }
-        if(xpNum >= xp.maxXP)
+        if(xpNum >= maxXp)
         {
-            xpNum = 0;
+            xpNum -= maxXp;
+            maxXp *= 1.1f;
             //levelup
             AddLevels();
         }
@@ -150,7 +152,9 @@ public class Character : MonoBehaviour
         rangeText.SetText(range.ToString());
         damageText.SetText(damage.ToString());
         upgrades.SetText(upgradeVariables.ToString());
-        if(upgradeVariables >= 1)
+        levels.SetText(level.ToString());
+
+        if (upgradeVariables >= 1)
         {
             upgradePanel.SetActive(true);
         }
@@ -290,7 +294,7 @@ public class Character : MonoBehaviour
         {
             healthBar.SetHealth(health);
             //healthBar.slider.value = 50.0f;
-            GainXp(100);
+            
         }
     }
 
@@ -302,7 +306,7 @@ public class Character : MonoBehaviour
 
     public void AddLevels()
     {
-
+        level += 1;
         xp.LevelUp();
         upgradeVariables += 1;
     }
@@ -314,6 +318,7 @@ public class Character : MonoBehaviour
             Debug.Log("Take damage");
             takeDamage(10.0f);
             other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(10.0f);
+            GainXp(10);
         }
     }
 
