@@ -322,6 +322,7 @@ public class Character : MonoBehaviour
     public void GainXp(float _xp)
     {
         xpNum += _xp;
+        score += (int)xpNum;
         xp.SetXp(xpNum);
     }
 
