@@ -212,7 +212,7 @@ public class Character : MonoBehaviour
         {
             case Classes.ARCHER:
                 setRange(200.0f);
-                setDamage(7.0f);
+                setDamage(5.0f);
                 setPlayerSpeed(15.0f);
                 setBulletSpeed(5.0f);
                 setHealth(80.0f);
