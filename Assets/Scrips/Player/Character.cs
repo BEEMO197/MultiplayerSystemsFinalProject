@@ -128,6 +128,7 @@ public class Character : MonoBehaviour
 
                         GameObject.Instantiate(bulletRef, (transform.position + (clickPosition - transform.position).normalized), Quaternion.LookRotation((clickPosition - transform.position).normalized));
 
+
                     }
 
 

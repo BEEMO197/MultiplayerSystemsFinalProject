@@ -20,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             // Damage Enemy
             TakeDamage(col.gameObject.GetComponent<BulletBehaviour>().damage);
+            col.gameObject.GetComponent<BulletBehaviour>().client.connectedPlayer.cube.GetComponent<Character>().GainXp(10);
         }
     }
 
