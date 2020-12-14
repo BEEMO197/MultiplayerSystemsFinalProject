@@ -71,6 +71,7 @@ public class Character : MonoBehaviour
 
             }
         }
+        transform.position = new Vector3(Random.Range(-50.0f, 50.0f), 1.0f, Random.Range(-50.0f, 50.0f));
         maxXp = xp.maxXP;
     }
 
