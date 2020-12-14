@@ -247,16 +247,28 @@ public class Character : MonoBehaviour
     public void setStats()
     {
         // Set Class
-        gameObject.GetComponent<MeshFilter>().mesh = characterMesh[int.Parse(PlayerPrefs.GetString("Player_Class"))];
-        setClass((Classes)int.Parse(PlayerPrefs.GetString("Player_Class")));
+        gameObject.GetComponent<MeshFilter>().mesh = characterMesh[(int)playerRef.playerClass];
+        setClass(playerRef.playerClass);
 
         // Set Username
-        username.SetText(PlayerPrefs.GetString("Player_Username"));
-        usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
+        username.SetText(playerRef.Username);
+        usernameOverhead.GetComponent<TextMeshPro>().SetText(playerRef.Username);
 
-        setLevel(int.Parse(PlayerPrefs.GetString("Player_Level")));
-        setScore(int.Parse(PlayerPrefs.GetString("Player_Score")));
-        setHealth(int.Parse(PlayerPrefs.GetString("Player_Health")));
+        setLevel(playerRef.level);
+        setScore(playerRef.score);
+        setHealth(playerRef.health);
+
+        //// Set Class
+        //gameObject.GetComponent<MeshFilter>().mesh = characterMesh[int.Parse(PlayerPrefs.GetString("Player_Class"))];
+        //setClass((Classes)int.Parse(PlayerPrefs.GetString("Player_Class")));
+        //
+        //// Set Username
+        //username.SetText(PlayerPrefs.GetString("Player_Username"));
+        //usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
+        //
+        //setLevel(int.Parse(PlayerPrefs.GetString("Player_Level")));
+        //setScore(int.Parse(PlayerPrefs.GetString("Player_Score")));
+        //setHealth(int.Parse(PlayerPrefs.GetString("Player_Health")));
     }
 
     public void setClass(Classes newClass)

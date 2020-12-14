@@ -25,7 +25,9 @@ public class NetworkClient : MonoBehaviour
     public NetworkObjects.NetworkPlayer connectedPlayer;
 
     public List<NetworkObjects.NetworkPlayer> playerList = new List<NetworkObjects.NetworkPlayer>();
+
     public GameObject cubeRef;
+    public GameObject bulletRef;
 
     public ServerUpdateMsg suMsg;
 
@@ -79,6 +81,8 @@ public class NetworkClient : MonoBehaviour
         {
             PlayerUpdateMsg pum = new PlayerUpdateMsg();
 
+            PlayerBulletMsg pbMsg = new PlayerBulletMsg();
+
             foreach (NetworkObjects.NetworkPlayer player in playerList)
             {
                 if (player.id == clientID)
@@ -89,18 +93,20 @@ public class NetworkClient : MonoBehaviour
                     pum.player.cubPos = player.cubPos;
                     pum.player.cubRot = player.cubRot;
 
-                    if(pum.player.cube.GetComponent<Character>().bulletFired)
+                    if (pum.player.cube.GetComponent<Character>().bulletFired)
                     {
-                        PlayerBulletMsg pbMsg = new PlayerBulletMsg();
-                        pbMsg.player = pum.player;
-                        pbMsg.clickedLocation = pum.player.cube.GetComponent<Character>().clickPosition;
+                        pbMsg.player = player;
+                        pbMsg.clickedLocation = player.cube.GetComponent<Character>().clickPosition;
 
+                        Debug.Log("Sending Bullet Message Over to Server");
                         SendToServer(JsonUtility.ToJson(pbMsg));
 
-                        pum.player.cube.GetComponent<Character>().bulletFired = false;
+                        pbMsg.player.cube.GetComponent<Character>().bulletFired = false;
                     }
+
                     SendToServer(JsonUtility.ToJson(pum));
                 }
+
             }
 
             yield return new WaitForSeconds(updateTime);
@@ -132,7 +138,7 @@ public class NetworkClient : MonoBehaviour
             case Commands.PLAYER_BULLET:
                 PlayerBulletMsg pbMsg = JsonUtility.FromJson<PlayerBulletMsg>(recMsg);
                 Debug.Log("Player Bullet Fired Message Recieved!");
-                GameObject.Instantiate(pbMsg.player.cube.GetComponent<Character>().bulletRef, (pbMsg.player.cubPos + (pbMsg.clickedLocation - pbMsg.player.cubPos).normalized), Quaternion.LookRotation((pbMsg.clickedLocation - pbMsg.player.cubPos).normalized));
+                GameObject.Instantiate(bulletRef, (pbMsg.player.cubPos + (pbMsg.clickedLocation - pbMsg.player.cubPos).normalized), Quaternion.LookRotation((pbMsg.clickedLocation - pbMsg.player.cubPos).normalized));
                 break;
 
             case Commands.PLAYER_JOINED:

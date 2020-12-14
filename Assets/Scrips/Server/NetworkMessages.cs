@@ -58,7 +58,7 @@ namespace NetworkMessages
 
         public PlayerBulletMsg()
         {      // Constructor
-            cmd = Commands.PLAYER_UPDATE;
+            cmd = Commands.PLAYER_BULLET;
             player = new NetworkObjects.NetworkPlayer();
         }
     };
