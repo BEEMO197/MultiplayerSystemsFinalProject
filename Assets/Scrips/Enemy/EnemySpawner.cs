@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if(Time.frameCount % Random.Range(200, 700) == 0)
         {
-            enemyManager.GetEnemy(new Vector3(Random.Range(-100.0f, 100.0f), Random.Range(-100.0f, 100.0f), 1.0f));
+            enemyManager.GetEnemy(new Vector3(Random.Range(-100.0f, 100.0f), 1.0f , Random.Range(-100.0f, 100.0f)));
         }
     }
 }
