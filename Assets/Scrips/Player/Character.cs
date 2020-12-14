@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
     public int score = 0;
     public float xpNum;
     public float maxXp = 100;
-    public TextMeshProUGUI healthText, speedText, damageText, rangeText, bulletSpeedText, upgrades, levels;
+    public TextMeshProUGUI healthText, speedText, damageText, rangeText, bulletSpeedText, upgrades, levels, scoreText;
     public GameObject upgradePanel;
 
     // Components
@@ -153,7 +153,7 @@ public class Character : MonoBehaviour
         damageText.SetText(damage.ToString());
         upgrades.SetText(upgradeVariables.ToString());
         levels.SetText(level.ToString());
-
+        scoreText.SetText(score.ToString());
         if (upgradeVariables >= 1)
         {
             upgradePanel.SetActive(true);
