@@ -54,16 +54,19 @@ public class Character : MonoBehaviour
     {
         //meshFilter.mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class") - 1];
         //GetComponent<MeshFilter>().mesh = characterMesh[0];
-        if (networkManRef.clientID == playerRef.id)
+        if (networkManRef != null)
         {
-            characterCamera.enabled = true;
-            characterCanvas.enabled = true;
-            characterAudioListener.enabled = true;
+            if (networkManRef.clientID == playerRef.id)
+            {
+                characterCamera.enabled = true;
+                characterCanvas.enabled = true;
+                characterAudioListener.enabled = true;
 
-            playerRef.cube = gameObject;
+                playerRef.cube = gameObject;
 
-            setStats();
+                setStats();
 
+            }
         }
         maxXp = xp.maxXP;
     }
@@ -232,7 +235,7 @@ public class Character : MonoBehaviour
     public void setStats()
     {
         // Set Class
-        playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[int.Parse(PlayerPrefs.GetString("Player_Class"))];
+        gameObject.GetComponent<MeshFilter>().mesh = characterMesh[int.Parse(PlayerPrefs.GetString("Player_Class"))];
         setClass((Classes)int.Parse(PlayerPrefs.GetString("Player_Class")));
 
         // Set Username

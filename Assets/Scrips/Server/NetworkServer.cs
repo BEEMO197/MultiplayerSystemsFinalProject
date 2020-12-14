@@ -76,22 +76,32 @@ public class NetworkServer : MonoBehaviour
         m.player.id = c.InternalId.ToString();
         SendToClient(JsonUtility.ToJson(m), c);
 
-        NetworkObjects.NetworkPlayer connectingPlayer = new NetworkObjects.NetworkPlayer();
-
-        connectingPlayer.id = c.InternalId.ToString();
-        connectingPlayer.cubeColor = UnityEngine.Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-        connectingPlayer.cubPos = new Vector3(UnityEngine.Random.Range(-50.0f, 50.0f), 0.0f, UnityEngine.Random.Range(-50.0f, 50.0f));
-        connectingPlayer.cubRot = new Quaternion();
-
-        for (int i = 0; i < m_Connections.Length; i++)
+        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
         {
-            if (m_Connections[i] != c)
-            {
-                PlayerJoinMessage pjMsg = new PlayerJoinMessage();
-                pjMsg.player = connectingPlayer;
-                SendToClient(JsonUtility.ToJson(pjMsg), m_Connections[i]);
-            }
+            Debug.Log("Creating a new Player...");
+
+            PlayerJoinMessage pjMsg = new PlayerJoinMessage();
+            pjMsg.player = player;
+
+            SendToClient(JsonUtility.ToJson(pjMsg), c);
         }
+
+        //NetworkObjects.NetworkPlayer connectingPlayer = new NetworkObjects.NetworkPlayer();
+
+        //connectingPlayer.id = c.InternalId.ToString();
+        //connectingPlayer.cubeColor = UnityEngine.Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+        //connectingPlayer.cubPos = new Vector3(UnityEngine.Random.Range(-50.0f, 50.0f), 0.0f, UnityEngine.Random.Range(-50.0f, 50.0f));
+        //connectingPlayer.cubRot = new Quaternion();
+
+        //for (int i = 0; i < m_Connections.Length; i++)
+        //{
+        //    if (m_Connections[i] != c)
+        //    {
+        //        PlayerJoinMessage pjMsg = new PlayerJoinMessage();
+        //        pjMsg.player = connectingPlayer;
+        //        SendToClient(JsonUtility.ToJson(pjMsg), m_Connections[i]);
+        //    }
+        //}
     }
 
     void OnData(DataStreamReader stream, int i){
@@ -125,7 +135,7 @@ public class NetworkServer : MonoBehaviour
             case Commands.PLAYER_JOINED:
                 PlayerJoinMessage pjMsg = JsonUtility.FromJson<PlayerJoinMessage>(recMsg);
                 Debug.Log("Player join message received!");
-                CreatePlayer(pjMsg.player, m_Connections[i]);
+                CreatePlayer(pjMsg, m_Connections[i]);
                 break;
 
             case Commands.SERVER_UPDATE:
@@ -145,19 +155,18 @@ public class NetworkServer : MonoBehaviour
         }
     }
 
-    void CreatePlayer(NetworkObjects.NetworkPlayer playerToCreate, NetworkConnection c)
+    void CreatePlayer(PlayerJoinMessage pjMsg, NetworkConnection c)
     {
-        PlayerJoinMessage pjMsg2 = new PlayerJoinMessage();
-        pjMsg2.player = playerToCreate;
-        pjMsg2.player.id = c.InternalId.ToString();
+        pjMsg.player.id = c.InternalId.ToString();
 
-        serverPlayerList.Add(pjMsg2.player);
+        serverPlayerList.Add(pjMsg.player);
 
-        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
+        for (int i = 0; i < m_Connections.Length; i++)
         {
-            Debug.Log("Creating a new Player...");
-
-            SendToClient(JsonUtility.ToJson(pjMsg2), c);
+            //if (m_Connections[i] != c)
+            //{
+                SendToClient(JsonUtility.ToJson(pjMsg), m_Connections[i]);
+            //}
         }
     }
 
