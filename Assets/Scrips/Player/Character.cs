@@ -95,6 +95,11 @@ public class Character : MonoBehaviour
                     transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.5f, 0.0f);
                 }
 
+                if(Input.GetAxis("Strafe") != 0)
+                {
+                    velocityR = (transform.right * Input.GetAxis("Strafe")) * playerSpeed;
+                }
+
                 if (Input.GetAxis("Vertical") != 0)
                 {
                     velocityF = (transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
@@ -265,7 +270,7 @@ public class Character : MonoBehaviour
                 setRange(200.0f);
                 setDamage(5.0f);
                 setPlayerSpeed(15.0f);
-                setBulletSpeed(5.0f);
+                setBulletSpeed(0.5f);
                 setHealth(80.0f);
                 break;
                 
@@ -273,7 +278,7 @@ public class Character : MonoBehaviour
                 setRange(75.0f);
                 setDamage(15.0f);
                 setPlayerSpeed(10.0f);
-                setBulletSpeed(0.5f);
+                setBulletSpeed(0.3f);
                 setHealth(110.0f);
                 break;
                 
@@ -289,7 +294,7 @@ public class Character : MonoBehaviour
                 setRange(50.0f);
                 setDamage(12.0f);
                 setPlayerSpeed(20.0f);
-                setBulletSpeed(3.0f);
+                setBulletSpeed(0.4f);
                 setHealth(60.0f);
                 break;
             default:
@@ -323,6 +328,7 @@ public class Character : MonoBehaviour
     public void GainXp(float _xp)
     {
         xpNum += _xp;
+        score += (int)_xp;
         xp.SetXp(xpNum);
     }
 
