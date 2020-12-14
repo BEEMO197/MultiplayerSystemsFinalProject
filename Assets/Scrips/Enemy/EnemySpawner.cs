@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(SpawnEnemy());
     }
 
     
@@ -21,15 +21,17 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnEnemy();
+        //SpawnEnemy();
     }
 
 
-    private void SpawnEnemy()
+    private IEnumerator SpawnEnemy()
     {
-        if(Time.frameCount % Random.Range(200, 700) == 0)
-        {
-            enemyManager.GetEnemy(new Vector3(Random.Range(-100.0f, 100.0f), 1.0f , Random.Range(-100.0f, 100.0f)));
+        if (enemyManager.getPoolSize() > 0) {
+            enemyManager.GetEnemy(new Vector3(Random.Range(-100.0f, 100.0f), 1.0f, Random.Range(-100.0f, 100.0f)));
         }
+
+        yield return new WaitForSeconds(Random.Range(2.0f, 5.0f));
+
     }
 }

@@ -53,4 +53,9 @@ public class EnemyManager : MonoBehaviour
         returnedEnemy.SetActive(false);
         enemyPool.Enqueue(returnedEnemy);
     }
+
+    public int getPoolSize()
+    {
+        return enemyPool.Count;
+    }
 }
