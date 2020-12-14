@@ -91,6 +91,7 @@ namespace NetworkObjects
         public Quaternion cubRot;
 
         // Player Game Variables
+        public string Username;
         public Classes playerClass;
         public float health;
         public int level;
@@ -103,5 +104,19 @@ namespace NetworkObjects
         public NetworkPlayer(){
             cubeColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
         }
+    }
+
+    [System.Serializable]
+    public struct NetworkPlayerJson
+    {
+        public string NewUserCheck;
+
+        public string Username;
+        public string Password;
+        public string Level;
+        public string Score;
+        public string Health;
+
+        public string playerClass;
     }
 }

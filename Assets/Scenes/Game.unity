@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateTime: 0.033333335
-  serverIP: 52.203.158.53
+  serverIP: 127.0.0.1
   serverPort: 12345
   clientID: 
   connectedPlayer:
@@ -652,6 +652,13 @@ MonoBehaviour:
     cubeColor: {r: 0, g: 0, b: 0, a: 0}
     cubPos: {x: 0, y: 0, z: 0}
     cubRot: {x: 0, y: 0, z: 0, w: 0}
+    Username: 
+    playerClass: 0
+    health: 0
+    level: 0
+    score: 0
+    bulletSpeed: 0
+    range: 0
   playerList: []
   cubeRef: {fileID: 199254152154721595, guid: fbb42c91da6d8304c9a60f100a927fa4, type: 3}
   suMsg:

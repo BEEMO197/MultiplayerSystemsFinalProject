@@ -52,11 +52,29 @@ public class NetworkClient : MonoBehaviour
         //pm.player.id = clientID;
         //SendToServer(JsonUtility.ToJson(pm));
 
+        Debug.Log("Connected");
         StartCoroutine(SendPlayerInformation());
     }
 
     IEnumerator SendPlayerInformation()
     {
+        yield return new WaitForSeconds(3.0f);
+
+        Debug.Log("Creating Player");
+        PlayerJoinMessage pm = new PlayerJoinMessage();
+
+        pm.player.cubeColor = UnityEngine.Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+        pm.player.cubPos = new Vector3(UnityEngine.Random.Range(-50.0f, 50.0f), 0.0f, UnityEngine.Random.Range(-50.0f, 50.0f));
+        pm.player.cubRot = new Quaternion();
+
+        pm.player.Username = PlayerPrefs.GetString("Player_Username");
+        pm.player.playerClass = (Classes)int.Parse(PlayerPrefs.GetString("Player_Class"));
+        pm.player.level = int.Parse(PlayerPrefs.GetString("Player_Level"));
+        pm.player.health = int.Parse(PlayerPrefs.GetString("Player_Health"));
+        pm.player.score = int.Parse(PlayerPrefs.GetString("Player_Score"));
+
+        SendToServer(JsonUtility.ToJson(pm));
+
         while (true)
         {
             PlayerUpdateMsg pum = new PlayerUpdateMsg();

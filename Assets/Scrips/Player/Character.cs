@@ -61,12 +61,9 @@ public class Character : MonoBehaviour
             characterAudioListener.enabled = true;
 
             playerRef.cube = gameObject;
-            playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[PlayerPrefs.GetInt("Character_Selected_Class")];
-            username.SetText(PlayerPrefs.GetString("Player_Username"));
-            usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
 
-            setClass((Classes)PlayerPrefs.GetInt("Character_Selected_Class"));
-            
+            setStats();
+
         }
         maxXp = xp.maxXP;
     }
@@ -232,7 +229,22 @@ public class Character : MonoBehaviour
         score = _score;
     }
 
-    public void setClass(Classes newClass )
+    public void setStats()
+    {
+        // Set Class
+        playerRef.cube.GetComponent<MeshFilter>().mesh = characterMesh[int.Parse(PlayerPrefs.GetString("Player_Class"))];
+        setClass((Classes)int.Parse(PlayerPrefs.GetString("Player_Class")));
+
+        // Set Username
+        username.SetText(PlayerPrefs.GetString("Player_Username"));
+        usernameOverhead.GetComponent<TextMeshPro>().SetText(PlayerPrefs.GetString("Player_Username"));
+
+        setLevel(int.Parse(PlayerPrefs.GetString("Player_Level")));
+        setScore(int.Parse(PlayerPrefs.GetString("Player_Score")));
+        setHealth(int.Parse(PlayerPrefs.GetString("Player_Health")));
+    }
+
+    public void setClass(Classes newClass)
     {
         currentClass = newClass;
         //set stats based on newClass

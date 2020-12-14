@@ -80,7 +80,7 @@ public class NetworkServer : MonoBehaviour
 
         connectingPlayer.id = c.InternalId.ToString();
         connectingPlayer.cubeColor = UnityEngine.Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-        connectingPlayer.cubPos = new Vector3(0.0f, 0.0f, 0.0f);
+        connectingPlayer.cubPos = new Vector3(UnityEngine.Random.Range(-50.0f, 50.0f), 0.0f, UnityEngine.Random.Range(-50.0f, 50.0f));
         connectingPlayer.cubRot = new Quaternion();
 
         for (int i = 0; i < m_Connections.Length; i++)
@@ -91,17 +91,6 @@ public class NetworkServer : MonoBehaviour
                 pjMsg.player = connectingPlayer;
                 SendToClient(JsonUtility.ToJson(pjMsg), m_Connections[i]);
             }
-        }
-
-        serverPlayerList.Add(connectingPlayer);
-
-        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
-        {
-            Debug.Log("Creating a new Player...");
-
-            PlayerJoinMessage pjMsg2 = new PlayerJoinMessage();
-            pjMsg2.player = player;
-            SendToClient(JsonUtility.ToJson(pjMsg2), c);
         }
     }
 
@@ -136,6 +125,7 @@ public class NetworkServer : MonoBehaviour
             case Commands.PLAYER_JOINED:
                 PlayerJoinMessage pjMsg = JsonUtility.FromJson<PlayerJoinMessage>(recMsg);
                 Debug.Log("Player join message received!");
+                CreatePlayer(pjMsg.player, m_Connections[i]);
                 break;
 
             case Commands.SERVER_UPDATE:
@@ -154,6 +144,23 @@ public class NetworkServer : MonoBehaviour
                 break;
         }
     }
+
+    void CreatePlayer(NetworkObjects.NetworkPlayer playerToCreate, NetworkConnection c)
+    {
+        PlayerJoinMessage pjMsg2 = new PlayerJoinMessage();
+        pjMsg2.player = playerToCreate;
+        pjMsg2.player.id = c.InternalId.ToString();
+
+        serverPlayerList.Add(pjMsg2.player);
+
+        foreach (NetworkObjects.NetworkPlayer player in serverPlayerList)
+        {
+            Debug.Log("Creating a new Player...");
+
+            SendToClient(JsonUtility.ToJson(pjMsg2), c);
+        }
+    }
+
     void OnDisconnect(int i){
         Debug.Log("Client disconnected from server");
 
