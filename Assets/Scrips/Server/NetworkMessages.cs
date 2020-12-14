@@ -83,10 +83,22 @@ namespace NetworkObjects
     }
     [System.Serializable]
     public class NetworkPlayer : NetworkObject{
+        
+        // Player Render Variables
         public GameObject cube;
         public Color cubeColor;
         public Vector3 cubPos;
         public Quaternion cubRot;
+
+        // Player Game Variables
+        public Classes playerClass;
+        public float health;
+        public int level;
+        public int score;
+
+        // Bullet Variables
+        public float bulletSpeed;
+        public float range;
 
         public NetworkPlayer(){
             cubeColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
