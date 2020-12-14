@@ -6,7 +6,7 @@ public class HeavyButton : MonoBehaviour
 {
     public void OnButtonPress()
     {
-        PlayerPrefs.SetInt("Character_Selected_Class", (int)Classes.HEAVY);
+        PlayerPrefs.SetString("Player_Class", ((int)Classes.HEAVY).ToString());
         SceneManager.LoadScene("Game");
     }
 }

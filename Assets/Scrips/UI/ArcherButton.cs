@@ -6,7 +6,7 @@ public class ArcherButton : MonoBehaviour
 {
     public void OnButtonPress()
     {
-        PlayerPrefs.SetInt("Character_Selected_Class", (int)Classes.ARCHER);
+        PlayerPrefs.SetString("Player_Class", ((int)Classes.ARCHER).ToString());
         SceneManager.LoadScene("Game");
     }
 }

@@ -7,7 +7,7 @@ public class RougeButton : MonoBehaviour
 
     public void OnButtonPress()
     {
-        PlayerPrefs.SetInt("Character_Selected_Class", (int)Classes.ROGUE);
+        PlayerPrefs.SetString("Player_Class", ((int)Classes.ROGUE).ToString());
         SceneManager.LoadScene("Game");
     }
 }

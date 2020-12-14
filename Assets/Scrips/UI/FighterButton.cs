@@ -6,7 +6,7 @@ public class FighterButton : MonoBehaviour
 {
     public void OnButtonPress()
     {
-        PlayerPrefs.SetInt("Character_Selected_Class", (int)Classes.FIGHTER);
+        PlayerPrefs.SetString("Player_Class", ((int)Classes.FIGHTER).ToString());
         SceneManager.LoadScene("Game");
     }
 }
