@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject GetEnemy(Vector3 position)
     {
-        if(enemyPool.Count.Equals(0))
+        if(getPoolSize() >= 0)
         {
             var newEnemy = enemyPool.Dequeue();
             newEnemy.SetActive(true);
