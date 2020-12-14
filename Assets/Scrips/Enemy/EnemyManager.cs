@@ -31,16 +31,20 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject GetEnemy(Vector3 position)
     {
+        if(enemyPool.Count.Equals(0))
+        {
+            var newEnemy = enemyPool.Dequeue();
+            newEnemy.SetActive(true);
+            newEnemy.transform.position = position;
 
-        var newEnemy = enemyPool.Dequeue();
-        newEnemy.SetActive(true);
-        newEnemy.transform.position = position;
+            return newEnemy;
+        }
+        else
+        {
+            Debug.Log("Queue is empty");
+            return null;
+        }
 
-        return newEnemy;
-        
-
-
-         
         
     }
 

@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667312944990280723}
   - component: {fileID: 1667312944990280721}
-  - component: {fileID: 1667312944990280720}
+  - component: {fileID: 4352187543242252229}
   m_Layer: 5
   m_Name: XP Bar
   m_TagString: Untagged
@@ -223,32 +223,8 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1667312944990280720}
-        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: SetHealth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1667312944990280720}
-        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: SetMaxHealth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1667312944990280720
+      m_Calls: []
+--- !u!114 &4352187543242252229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,12 +233,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1667312944990280722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7650c2ea7145c408d0348e7c3085aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b22c3b2a8cb32f46b79c36d0aad24df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1667312944990280721}
-  health: 100
-  maxHealth: 100
 --- !u!1 &1667312945360823780
 GameObject:
   m_ObjectHideFlags: 0

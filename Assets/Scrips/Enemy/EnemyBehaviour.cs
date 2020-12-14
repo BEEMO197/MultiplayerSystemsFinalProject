@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        healthBar.SetHealth(damage);
+        health -= damage;
+        healthBar.SetHealth(health);
     }
 }

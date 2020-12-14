@@ -24,12 +24,16 @@ public class Character : MonoBehaviour
     public float playerSpeed;
     public float bulletSpeed;
     public float range;
-
+    public float upgradeVariables = 0;
     public bool isSetToDie = false;
 
     // Ui Variables
     public int level = 1;
     public int score = 0;
+    public float xpNum;
+    public float maxXp;
+    public TextMeshProUGUI healthText, speedText, damageText, rangeText, bulletSpeedText, upgrades;
+    public GameObject upgradePanel;
 
     // Components
     public Camera characterCamera;
@@ -40,6 +44,7 @@ public class Character : MonoBehaviour
     public Rigidbody rigidBody;
     public TextMeshProUGUI username;
     public GameObject usernameOverhead;
+    public XpBar xp;
     // Server Variables
     public NetworkClient networkManRef;
     public NetworkObjects.NetworkPlayer playerRef;
@@ -132,7 +137,27 @@ public class Character : MonoBehaviour
                 playerRef.cubRot = transform.rotation;
             }
         }
-        
+        if(xpNum >= xp.maxXP)
+        {
+            xpNum = 0;
+            //levelup
+            AddLevels();
+        }
+
+        healthText.SetText(health.ToString());
+        speedText.SetText(playerSpeed.ToString());
+        bulletSpeedText.SetText(bulletSpeed.ToString());
+        rangeText.SetText(range.ToString());
+        damageText.SetText(damage.ToString());
+        upgrades.SetText(upgradeVariables.ToString());
+        if(upgradeVariables >= 1)
+        {
+            upgradePanel.SetActive(true);
+        }
+        else
+        {
+            upgradePanel.SetActive(false);
+        }
     }
     public float getHealth()
     {
@@ -251,6 +276,7 @@ public class Character : MonoBehaviour
                 break;
         }
         healthBar.SetMaxHealth(getHealth());
+        
     }
 
     public void takeDamage(float damageTaken)
@@ -264,11 +290,22 @@ public class Character : MonoBehaviour
         {
             healthBar.SetHealth(health);
             //healthBar.slider.value = 50.0f;
-            Debug.Log("take damage");
+            GainXp(100);
         }
     }
 
+    public void GainXp(float _xp)
+    {
+        xpNum += _xp;
+        xp.SetXp(xpNum);
+    }
 
+    public void AddLevels()
+    {
+
+        xp.LevelUp();
+        upgradeVariables += 1;
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -279,6 +316,8 @@ public class Character : MonoBehaviour
             other.gameObject.GetComponent<EnemyBehaviour>().TakeDamage(10.0f);
         }
     }
+
+
 }
 
 
